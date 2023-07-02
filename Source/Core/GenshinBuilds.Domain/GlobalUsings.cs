@@ -1,2 +1,1 @@
-﻿global using GenshinBuilds.Domain.Enum;
-global using GenshinBuilds.Domain.Models.Common;
+﻿global using GenshinBuilds.Domain.Models.Common;

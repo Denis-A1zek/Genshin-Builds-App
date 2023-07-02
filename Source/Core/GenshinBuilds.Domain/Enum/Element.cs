@@ -1,4 +1,4 @@
-﻿namespace GenshinBuilds.Domain.Enum;
+﻿namespace GenshinBuilds.Domain;
 
 public enum Element
 {

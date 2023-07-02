@@ -1,4 +1,4 @@
-﻿namespace GenshinBuilds.Domain.Enum;
+﻿namespace GenshinBuilds.Domain;
 
 public enum WeaponType
 {
@@ -9,3 +9,5 @@ public enum WeaponType
     Sword,
     None
 }
+
+
