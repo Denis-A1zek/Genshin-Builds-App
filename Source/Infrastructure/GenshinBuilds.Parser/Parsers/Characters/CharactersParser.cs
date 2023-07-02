@@ -1,6 +1,4 @@
-﻿using GenshinBuilds.Domain.Models;
-using GenshinBuilds.Parser.Common;
-using HtmlAgilityPack;
+﻿using GenshinBuilds.Parser.Common;
 
 namespace GenshinBuilds.Parser;
 

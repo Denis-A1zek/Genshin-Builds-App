@@ -1,7 +1,6 @@
-﻿using GenshinBuilds.Domain.Enum;
-using GenshinBuilds.Domain.Models;
+﻿using GenshinBuilds.Domain.Models;
+using GenshinBuilds.Domain.Models.Common;
 using GenshinBuilds.Parser.Helpers;
-using HtmlAgilityPack;
 
 namespace GenshinBuilds.Parser;
 
@@ -16,8 +15,8 @@ internal class CharacterParser
     public Character GetCharacterAsync(string source)
     {
         var characterBlock = LoadCharacterBlock(source);
-        var character = ParseCharacterBlock(characterBlock);
-        
+        var character = ParseCharacterBlock(characterBlock);     
+
         return character;
     }
 
@@ -58,8 +57,6 @@ internal class CharacterParser
     private Rarity ParseCharacterRarity(HtmlNode htmlNode)
         => (Rarity)htmlNode.ChildNodes.Where(n => n.Name == "svg").Count() - 2;
 
-    private WeaponType ParseWeaponType(HtmlNode htmlNode)
-        => ItemHelper.GetWeaponType(
-            htmlNode.ChildNodes.Where(t => t.Name == "p")
-                .FirstOrDefault().InnerText);
+    private Rarity ParseWeaponType(HtmlNode htmlNode)
+        => Rarity.Undefined;
 }  

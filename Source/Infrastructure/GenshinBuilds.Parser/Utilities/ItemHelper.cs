@@ -1,6 +1,4 @@
-﻿using GenshinBuilds.Domain.Enum;
-
-namespace GenshinBuilds.Parser.Helpers;
+﻿namespace GenshinBuilds.Parser.Helpers;
 
 internal static class ItemHelper
 {
@@ -16,14 +14,14 @@ internal static class ItemHelper
         };
 
     public static Rarity GetRarity(string value)
-    => value switch
-    {
-        string r when value.Contains("rare", StringComparison.InvariantCultureIgnoreCase) => Rarity.Rare,
-        string r when value.Contains("legendary", StringComparison.InvariantCultureIgnoreCase) => Rarity.Legendary,
-        string r when value.Contains("primary", StringComparison.InvariantCultureIgnoreCase) => Rarity.Primary,
-        string r when value.Contains("green", StringComparison.InvariantCultureIgnoreCase) => Rarity.Green,
-        _ => Rarity.Undefined
-    };
+        => value switch
+        {
+            string r when value.Contains("rare", StringComparison.InvariantCultureIgnoreCase) => Rarity.Rare,
+            string r when value.Contains("legendary", StringComparison.InvariantCultureIgnoreCase) => Rarity.Legendary,
+            string r when value.Contains("primary", StringComparison.InvariantCultureIgnoreCase) => Rarity.Primary,
+            string r when value.Contains("green", StringComparison.InvariantCultureIgnoreCase) => Rarity.Green,
+            _ => Rarity.Undefined
+        };
 
     public static Element GetElement(string value)
         => value switch

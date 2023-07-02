@@ -1,7 +1,5 @@
-﻿using GenshinBuilds.Domain.Enum;
-using GenshinBuilds.Domain.Models;
+﻿using GenshinBuilds.Domain.Builders;
 using GenshinBuilds.Parser.Helpers;
-using HtmlAgilityPack;
 
 namespace GenshinBuilds.Parser;
 
@@ -9,9 +7,10 @@ internal sealed class WeaponParser
 {
     private readonly HtmlWeb _web;
     private readonly string _baseUrl;
+    private readonly IWeaponBuilder _weaponBuilder;
 
-    public WeaponParser(HtmlWeb web, string baseUrl)
-        => (_web, _baseUrl) = (web, baseUrl);
+    public WeaponParser(HtmlWeb web, string baseUrl, IWeaponBuilder weaponBuilder)
+        => (_web, _baseUrl, _weaponBuilder) = (web, baseUrl, weaponBuilder);
 
     public Weapon GetWeaponAsync(string source)
     {
@@ -42,18 +41,19 @@ internal sealed class WeaponParser
 
             weapon = CreateWeapon(item);
         }
+
         return weapon;
     }
 
     private Weapon CreateWeapon(HtmlNode node)
-        => new Weapon()
-        {
-            Title = node.ChildNodes[0].InnerText.Trim('\\', '"'),
-            Rarity = (Rarity)GetWeaponRarity(node.ChildNodes[2]),
-            Type = ItemHelper.GetWeaponType(GetWeaponTypeName(node.ChildNodes[2])),
-            Modifier = GetWeaponModifier(node.ChildNodes[6]),
-            Description = node.ChildNodes[4].InnerText
-        };
+        => _weaponBuilder
+        .SetTile(node.ChildNodes[0].InnerText.Trim('\\', '"'))
+        .SetRarity((Rarity)GetWeaponRarity(node.ChildNodes[2]))
+        .SetType(GetWeaponTypeName(node.ChildNodes[2]))
+        .SetModifire(GetWeaponModifier(node.ChildNodes[6]))
+        .SetDescription(node.ChildNodes[4].InnerText)
+        .Build();
+
 
     /// <summary>
     /// Parses weapon type from a node

@@ -1,62 +1,66 @@
-.navbar-toggler {
-    background-color: rgba(255, 255, 255, 0.1);
+
+
+aside {
+    height: 100vh;
 }
 
-.top-row {
-    height: 3.5rem;
-    background-color: rgba(0,0,0,0.4);
+aside .app-sidebar{
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-white);
+  box-shadow: var(--box-shadow);
+  border-radius: 15px;
+  height: 92vh;
+  position: relative;
+  top: 1.5rem;
+  transition: all 0.3s ease;
 }
 
-.navbar-brand {
-    font-size: 1.1rem;
+aside .app-sidebar:hover{
+  box-shadow: none;
 }
 
-.oi {
-    width: 2rem;
-    font-size: 1.1rem;
-    vertical-align: text-top;
-    top: -2px;
+aside .app-sidebar a{
+  display: flex;
+  align-items: center;
+  color: var(--color-info-dark);
+  height: 3.7rem;
+  gap: 1rem;
+  position: relative;
+  margin-left: 2rem;
+  transition: all 0.3s ease;
 }
 
-.nav-item {
-    font-size: 0.9rem;
-    padding-bottom: 0.5rem;
+aside .app-sidebar a span {
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
 }
 
-    .nav-item:first-of-type {
-        padding-top: 1rem;
-    }
-
-    .nav-item:last-of-type {
-        padding-bottom: 1rem;
-    }
-
-    .nav-item ::deep a {
-        color: #d7d7d7;
-        border-radius: 4px;
-        height: 3rem;
-        display: flex;
-        align-items: center;
-        line-height: 3rem;
-    }
-
-.nav-item ::deep a.active {
-    background-color: rgba(255,255,255,0.25);
-    color: white;
+aside .app-sidebar a h3{
+    margin: 0.5rem;
 }
 
-.nav-item ::deep a:hover {
-    background-color: rgba(255,255,255,0.1);
-    color: white;
+aside .app-sidebar a:hover {
+    color: var(--color-primary);
 }
 
-@media (min-width: 641px) {
+aside .app-sidebar a.active span {
+    color: var(--color-primary);
+    margin-left: calc(1rem - 3px);
+}
+
+aside .app-sidebar a:hover span {
+    margin-left: 0.6rem;
+}
+
+
+/*@media (min-width: 641px) {
     .navbar-toggler {
         display: none;
     }
 
-    .collapse {
+    .collapse {*/
         /* Never collapse the sidebar for wide screens */
-        display: block;
+        /*display: block;
     }
-}
+}*/

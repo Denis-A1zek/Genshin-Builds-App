@@ -1,5 +1,4 @@
-﻿using HtmlAgilityPack;
-using GenshinBuilds.Domain.Models;
+﻿using GenshinBuilds.Domain.Builders;
 using GenshinBuilds.Parser.Common;
 
 namespace GenshinBuilds.Parser;
@@ -10,8 +9,8 @@ public sealed class WeaponsParser : Parser<IEnumerable<Weapon>>
     
     private readonly WeaponParser _weaponParser;
     
-    public WeaponsParser(HtmlWeb web) : base(web)
-        => _weaponParser = new WeaponParser(web, BaseUrl);
+    public WeaponsParser(HtmlWeb web, IWeaponBuilder weaponBuilder) : base(web)
+        => _weaponParser = new WeaponParser(web, BaseUrl, weaponBuilder);
     
     public override async Task<IEnumerable<Weapon>> LoadAsync()
     {
