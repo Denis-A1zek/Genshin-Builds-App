@@ -1,4 +1,4 @@
-﻿using GenshinBuilds.Application.Interfaces;
+﻿using GenshinBuilds.Application;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GenshinBuilds.Parser;
