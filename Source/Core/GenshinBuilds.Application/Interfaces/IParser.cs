@@ -1,4 +1,4 @@
-﻿namespace GenshinBuilds.Application.Interfaces;
+﻿namespace GenshinBuilds.Application;
 
 public interface IParser<T>
 {

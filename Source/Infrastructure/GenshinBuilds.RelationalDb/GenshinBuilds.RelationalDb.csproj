@@ -15,4 +15,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.8" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\GenshinBuilds.Application\GenshinBuilds.Application.csproj" />
+  </ItemGroup>
+
 </Project>
