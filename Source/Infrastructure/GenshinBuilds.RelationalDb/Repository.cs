@@ -38,6 +38,6 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Identity
     public async Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate)
         => await _dbSet.Where(predicate).ToListAsync();
 
-    public async Task<bool> Commit()
-        => await _context.SaveChangesAsync() > 0;
+    public async Task<int> CountAsync()
+        => await _dbSet.CountAsync();
 }
