@@ -2,7 +2,7 @@
 using GenshinBuilds.Application;
 using GenshinBuilds.Application.Common.Converters;
 using GenshinBuilds.Application.Common.Resolvers;
-using GenshinBuilds.Application.Interfaces;
+
 using GenshinBuilds.Domain;
 using System;
 using System.Collections.Generic;

@@ -1,8 +1,9 @@
 ﻿using FluentAssertions;
+using GenshinBuilds.Application;
 using GenshinBuilds.Application.Common.Builders;
-using GenshinBuilds.Application.Interfaces;
 using GenshinBuilds.Domain;
 using GenshinBuilds.Domain.Builders;
+using GenshinBuilds.Domain.Interfaces;
 using GenshinBuilds.Domain.Models;
 using Moq;
 using System;
