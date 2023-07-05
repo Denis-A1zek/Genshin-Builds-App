@@ -1,5 +1,5 @@
-﻿using GenshinBuilds.Application.Interfaces;
-using HtmlAgilityPack;
+﻿
+using GenshinBuilds.Application;
 
 namespace GenshinBuilds.Parser.Common;
 

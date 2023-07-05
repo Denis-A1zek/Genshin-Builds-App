@@ -15,4 +15,8 @@
     <ProjectReference Include="..\..\Core\GenshinBuilds.Application\GenshinBuilds.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\" />
+  </ItemGroup>
+
 </Project>
