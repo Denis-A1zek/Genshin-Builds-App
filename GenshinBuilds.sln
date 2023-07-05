@@ -23,9 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenshinBuilds.IntegrationTe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenshinBuilds.MauiClient", "Source\Presentation\GenshinBuilds.MauiClient\GenshinBuilds.MauiClient.csproj", "{796B68C7-8078-4C15-8827-3364A1EC2DCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenshinBuilds.RelationalDb", "Source\Infrastructure\GenshinBuilds.RelationalDb\GenshinBuilds.RelationalDb.csproj", "{30B035B6-3A58-4575-B732-D7B81FFE8978}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenshinBuilds.RelationalDb", "Source\Infrastructure\GenshinBuilds.RelationalDb\GenshinBuilds.RelationalDb.csproj", "{30B035B6-3A58-4575-B732-D7B81FFE8978}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenshinBuilds.UnitTesting", "Tests\GenshinBuilds.UnitTesting\GenshinBuilds.UnitTesting.csproj", "{440A0150-2CA7-4D04-8C5F-2478E69AADD5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenshinBuilds.UnitTesting", "Tests\GenshinBuilds.UnitTesting\GenshinBuilds.UnitTesting.csproj", "{440A0150-2CA7-4D04-8C5F-2478E69AADD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
