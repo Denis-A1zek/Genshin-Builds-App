@@ -12,5 +12,5 @@ public interface IUnitOfWork
 {
     Task<bool> Commit();
     IRepository<TEntity> GetRepository<TEntity>() where TEntity : Identity;
-    IRepository<Identity> GetRepository(Type type);
+    object GetRepository(Type type);
 }

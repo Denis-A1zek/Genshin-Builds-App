@@ -1,4 +1,5 @@
 ﻿using GenshinBuilds.Application.Common.Builders;
+using GenshinBuilds.Application.Common.Converters;
 using GenshinBuilds.Application.Common.Resolvers;
 using GenshinBuilds.Domain;
 using GenshinBuilds.Domain.Builders;
@@ -16,6 +17,8 @@ public static class DependencyInjection
         services.AddSingleton<IValueConverter>(new ValueConverter(options =>
         {
             options.RegisterConverter(new StringToWeaponTypeConverter());
+            options.RegisterConverter(new StringToElementConverter());
+            options.RegisterConverter(new StringToRarityConverter());
         }));
 
         return services;

@@ -1,4 +1,4 @@
-﻿using GenshinBuilds.Domain.Interfaces;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +9,13 @@ namespace GenshinBuilds.Application.Common.Models;
 
 public class UpdateDetails
 {
-    public UpdateDetails()
-    {
-        UpdateTime = DateTime.Now;
-        AvailableUpdates = new List<string>();
-    }
-    public DateTime UpdateTime { get; set; }
-    public List<string> AvailableUpdates;
+    public DateTime UpdateTime { get; private set; }
+    public bool HasUpdates { get; private set; } = false;
+    public int Difference { get; private set; }
+    public Type Type { get; private set; }
+
+    public static UpdateDetails NotUpdated<T>() 
+        => new UpdateDetails() { Difference = 0, Type = typeof(T), HasUpdates = false };
+    public static UpdateDetails Updated<T>(int dif) 
+        => new UpdateDetails() { Difference = dif, Type = typeof(T), HasUpdates = true, UpdateTime = DateTime.Now };
 }
