@@ -3,6 +3,7 @@ using GenshinBuilds.Application.Common.Converters;
 using GenshinBuilds.Application.Common.Resolvers;
 using GenshinBuilds.Domain;
 using GenshinBuilds.Domain.Builders;
+using GenshinBuilds.Domain.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
 
@@ -13,6 +14,7 @@ public static class DependencyInjection
     public static IServiceCollection LoadApplicationDependency(this IServiceCollection services)
     {
         services.AddTransient<IWeaponBuilder, WeaponBuilder>();
+        services.AddTransient<ICharacterBuilder, CharacterBuilder>();
 
         services.AddSingleton<IValueConverter>(new ValueConverter(options =>
         {

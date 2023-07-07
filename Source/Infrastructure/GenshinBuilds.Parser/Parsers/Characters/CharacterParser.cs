@@ -1,4 +1,5 @@
-﻿using GenshinBuilds.Domain.Models;
+﻿using GenshinBuilds.Domain.Interfaces;
+using GenshinBuilds.Domain.Models;
 using GenshinBuilds.Domain.Models.Common;
 using GenshinBuilds.Parser.Helpers;
 
@@ -8,9 +9,10 @@ internal class CharacterParser
 {
     private readonly HtmlWeb _web;
     private readonly string _baseUrl;
+    private readonly ICharacterBuilder _characterBuilder;
 
-    public CharacterParser(HtmlWeb web, string baseUrl)
-        => (_web, _baseUrl) = (web, baseUrl);
+    public CharacterParser(HtmlWeb web, string baseUrl, ICharacterBuilder characterBuilder)
+        => (_web, _baseUrl, _characterBuilder) = (web, baseUrl, characterBuilder);
 
     public Character GetCharacterAsync(string source)
     {
@@ -42,21 +44,22 @@ internal class CharacterParser
     }
 
     private void CreateCharacter(HtmlNode characterBlock, Character character)
-    {
-        var characterElementImage = characterBlock.ChildNodes[0].SelectSingleNode("img").Attributes["src"].Value;
-        character.Element = ItemHelper.GetElement(characterElementImage);
-        character.ElementsImage = $"{_baseUrl}{characterElementImage}";
-        character.Rarity = ParseCharacterRarity(characterBlock.ChildNodes[2]);
+        => _characterBuilder.SetName(GetCharacterName(characterBlock))
+            .SetWeaponType(ParseWeaponType(characterBlock.ChildNodes[2]))
+            .SetDescription(characterBlock.ChildNodes[4].InnerText)
+            .SetElement(characterBlock.ChildNodes[0].SelectSingleNode("img").Attributes["src"].Value)
+            .SetElementImage(characterBlock.ChildNodes[0].SelectSingleNode("img").Attributes["src"].Value)
+            .SetRarity(ParseCharacterRarity(characterBlock.ChildNodes[2]))
+            .Build();
 
-        var characterName = characterBlock.ChildNodes[0].InnerText;
-        character.Name = characterName.Replace("\n", "").Replace(" ", "");
-        character.WeaponType = ParseWeaponType(characterBlock.ChildNodes[2]);
-        character.Description = characterBlock.ChildNodes[4].InnerText;
-    }
+    private string GetCharacterName(HtmlNode nameNode)
+        => nameNode.ChildNodes[0].InnerText.Replace("\n", "").Replace(" ", "");
 
     private Rarity ParseCharacterRarity(HtmlNode htmlNode)
         => (Rarity)htmlNode.ChildNodes.Where(n => n.Name == "svg").Count() - 2;
 
-    private Rarity ParseWeaponType(HtmlNode htmlNode)
-        => Rarity.Undefined;
+
+    //TO-DO
+    private WeaponType ParseWeaponType(HtmlNode htmlNode)
+        => WeaponType.None;
 }  

@@ -13,9 +13,7 @@ public class CharacterBuilder : ICharacterBuilder
         => (_character, _converter) = (new(), converter);
 
     public Character Build()
-    {
-        throw new NotImplementedException();
-    }
+        => _character;
 
     public ICharacterBuilder SetAvatar(string avatarUrl)
     {

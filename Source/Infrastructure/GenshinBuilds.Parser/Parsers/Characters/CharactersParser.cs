@@ -1,4 +1,5 @@
-﻿using GenshinBuilds.Parser.Common;
+﻿using GenshinBuilds.Domain.Interfaces;
+using GenshinBuilds.Parser.Common;
 
 namespace GenshinBuilds.Parser;
 
@@ -8,8 +9,8 @@ public class CharactersParser : Parser<IEnumerable<Character>>
 
     private readonly CharacterParser _characterParser;
 
-    public CharactersParser(HtmlWeb web) : base(web)
-        => _characterParser = new CharacterParser(web, BaseUrl);
+    public CharactersParser(HtmlWeb web, ICharacterBuilder characterBuilder) : base(web)
+        => _characterParser = new CharacterParser(web, BaseUrl, characterBuilder);
 
     public override async Task<IEnumerable<Character>> LoadAsync()
     {
@@ -35,7 +36,7 @@ public class CharactersParser : Parser<IEnumerable<Character>>
 
         await Parallel.ForEachAsync(charactersBlock.ChildNodes,
             GetParallelOptions(), async (source, token)
-                => ParseCharacter(source, characters));
+                =>  ParseCharacter(source, characters));
 
         return characters;
     }
