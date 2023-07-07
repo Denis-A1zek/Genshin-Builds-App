@@ -10,7 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoFixture" Version="4.18.0" />
     <PackageReference Include="FluentAssertions" Version="6.11.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.8" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
     <PackageReference Include="Moq" Version="4.18.4" />
     <PackageReference Include="NUnit" Version="3.13.3" />
@@ -21,6 +23,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Source\Core\GenshinBuilds.Application\GenshinBuilds.Application.csproj" />
+    <ProjectReference Include="..\..\Source\Infrastructure\GenshinBuilds.Parser\GenshinBuilds.Parser.csproj" />
+    <ProjectReference Include="..\..\Source\Infrastructure\GenshinBuilds.RelationalDb\GenshinBuilds.RelationalDb.csproj" />
   </ItemGroup>
 
 </Project>
