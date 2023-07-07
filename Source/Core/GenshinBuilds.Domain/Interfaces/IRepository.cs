@@ -15,6 +15,7 @@ public interface IRepository<TEntity> where TEntity : Identity
     Task<int> CountAsync();
     IQueryable<TEntity> GetQueryable();
     Task InsertAsync(TEntity entity);
+    Task InsertRangeAsync(IEnumerable<TEntity> entities);
     void Update(TEntity entity);
     void Delete(TEntity entity);
 }
