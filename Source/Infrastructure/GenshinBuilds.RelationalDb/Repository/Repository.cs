@@ -12,10 +12,9 @@ namespace GenshinBuilds.RelationalDb;
 
 public class Repository<TEntity> : IRepository<TEntity> where TEntity : Identity
 {
-    private readonly DatabaseContext _context;
     private readonly DbSet<TEntity> _dbSet;
     public Repository(DatabaseContext context)
-        => (_context, _dbSet) = (context, context.Set<TEntity>());
+        => (_dbSet) = (context.Set<TEntity>());
 
     public async Task InsertAsync(TEntity entity)
         => await _dbSet.AddAsync(entity);
@@ -40,4 +39,7 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Identity
 
     public async Task<int> CountAsync()
         => await _dbSet.CountAsync();
+
+    public async Task InsertRangeAsync(IEnumerable<TEntity> entities)
+        => await _dbSet.AddRangeAsync(entities);
 }
