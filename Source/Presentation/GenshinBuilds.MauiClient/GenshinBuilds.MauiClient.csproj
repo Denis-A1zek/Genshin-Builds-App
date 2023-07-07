@@ -56,6 +56,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\Core\GenshinBuilds.Application\GenshinBuilds.Application.csproj" />
       <ProjectReference Include="..\..\Infrastructure\GenshinBuilds.Parser\GenshinBuilds.Parser.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\GenshinBuilds.RelationalDb\GenshinBuilds.RelationalDb.csproj" />
     </ItemGroup>
 
 </Project>

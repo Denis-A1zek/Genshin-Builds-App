@@ -1,6 +1,8 @@
 ﻿using GenshinBuilds.MauiClient.Data;
 using GenshinBuilds.Parser;
 using Microsoft.Extensions.Logging;
+using GenshinBuilds.RelationalDb;
+using GenshinBuilds.Application;
 
 namespace GenshinBuilds.MauiClient;
 
@@ -17,7 +19,9 @@ public static class MauiProgram
             });
 
         builder.Services.AddMauiBlazorWebView();
+        builder.Services.LoadApplicationDependency();
         builder.Services.AddParsers();
+        builder.Services.AddRepository();
 
 #if DEBUG
 		builder.Services.AddBlazorWebViewDeveloperTools();
