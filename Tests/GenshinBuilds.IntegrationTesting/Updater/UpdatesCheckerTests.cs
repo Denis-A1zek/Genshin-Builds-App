@@ -7,8 +7,8 @@ namespace GenshinBuilds.IntegrationTesting.Updater;
 public class UpdatesCheckerTests
 {
     private HtmlWeb web;
-    private IUpdateChecker<Weapon> _weaponChecker;
-    private IUpdateChecker<Character> _characterChecker;
+    private IUpdateChecker _weaponChecker;
+    private IUpdateChecker _characterChecker;
     private Mock<IUnitOfWork> _unitOfWork;
 
     [SetUp]

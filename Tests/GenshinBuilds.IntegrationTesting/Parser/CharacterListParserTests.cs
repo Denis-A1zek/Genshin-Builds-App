@@ -1,4 +1,5 @@
 ﻿
+using GenshinBuilds.Application;
 using GenshinBuilds.Application.Common.Builders;
 using GenshinBuilds.Application.Common.Converters;
 using GenshinBuilds.Application.Common.Resolvers;
@@ -9,26 +10,25 @@ namespace GenshinBuilds.IntegrationTesting.Parser;
 
 public class CharacterListParserTests : ParserTests<CharactersParser>
 {
-    private ICharacterBuilder _characterBuilder;
+    private IValueConverter _valueConverter;
 
     [SetUp]
     public void Setup()
     {
-        var _converter = new ValueConverter(options =>
+        _valueConverter = new ValueConverter(options =>
         {
             options.RegisterConverter(new StringToWeaponTypeConverter());
             options.RegisterConverter(new StringToRarityConverter());
             options.RegisterConverter(new StringToElementConverter());
         });
 
-        _characterBuilder = new CharacterBuilder(_converter);
     }
 
     [Test]
     public async Task LoadAsync_WithValidHtmlPage_ShouldReturnCharacters()
     {
         //Arange
-        var _parser = new CharactersParser(new HtmlWeb(), _characterBuilder);
+        var _parser = new CharactersParser(new HtmlWeb(), _valueConverter);
 
         //Act
         var result = await _parser.LoadAsync();

@@ -13,7 +13,7 @@ public class WeaponUpdateHandlerTests
     private Mock<IUnitOfWork> _unitOfWork;
     private Mock<IParser<IEnumerable<Weapon>>> _weaponParser; 
     private Mock<IRepository<Weapon>> _weaponRepository;
-    private IUpdateHandler<Weapon> _weaponUpdateHandler;
+    private IUpdateHandler _weaponUpdateHandler;
 
     [SetUp]
     public void Setup()

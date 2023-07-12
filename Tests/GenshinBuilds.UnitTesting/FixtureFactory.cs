@@ -15,7 +15,7 @@ public class FixtureFactory
     public static DatabaseContext CreateContext()
     {
         var options = new DbContextOptionsBuilder<DatabaseContext>()
-        .UseInMemoryDatabase(databaseName: "Test")
+        .UseInMemoryDatabase(databaseName: "Test.db")
         .Options;
 
         _context = new DatabaseContext(options);
