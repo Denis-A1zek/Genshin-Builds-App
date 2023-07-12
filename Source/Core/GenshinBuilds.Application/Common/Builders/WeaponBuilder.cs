@@ -8,13 +8,24 @@ namespace GenshinBuilds.Application.Common.Builders;
 
 public class WeaponBuilder : IWeaponBuilder
 {
-    private readonly Weapon _weapon;
+    private  Weapon _weapon;
     private readonly IValueConverter _converter;
 
     public WeaponBuilder(IValueConverter converter)
-        => (_weapon, _converter) = (new(), converter);
+        => (_converter) = (converter);
 
-    public Weapon Build() => _weapon;
+    public IWeaponBuilder Create()
+    {
+        _weapon = new Weapon();
+        return this;
+    }
+
+    public Weapon Build()
+    {
+        var buildedWeapon = _weapon;
+        _weapon = null;
+        return buildedWeapon;
+    }
 
     public IWeaponBuilder SetDescription(string description)
     {
@@ -61,13 +72,13 @@ public class WeaponBuilder : IWeaponBuilder
 
     public IWeaponBuilder SetType(string type)
     {
-        _weapon.Type = _converter.Convert<string, WeaponType>(type);
+        _weapon.WeaponType = _converter.Convert<string, WeaponType>(type);
         return this;
     }
 
     public IWeaponBuilder SetType(WeaponType type)
     {
-        _weapon.Type = type;
+        _weapon.WeaponType = type;
         return this;
     }
 }

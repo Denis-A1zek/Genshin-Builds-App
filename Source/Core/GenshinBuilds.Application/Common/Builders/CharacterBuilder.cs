@@ -6,14 +6,24 @@ namespace GenshinBuilds.Application.Common.Builders;
 
 public class CharacterBuilder : ICharacterBuilder
 {
-    private readonly Character _character;
+    private Character _character;
     private readonly IValueConverter _converter;
 
     public CharacterBuilder(IValueConverter converter)
-        => (_character, _converter) = (new(), converter);
+        => (_converter) = (converter);
+
+    public ICharacterBuilder Create()
+    {
+        _character = new Character();
+        return this;
+    }
 
     public Character Build()
-        => _character;
+    {
+        var buildedCharacter = _character;
+        _character = null;
+        return buildedCharacter;
+    }
 
     public ICharacterBuilder SetAvatar(string avatarUrl)
     {
@@ -80,4 +90,5 @@ public class CharacterBuilder : ICharacterBuilder
         _character.WeaponType = weapon;
         return this;
     }
+
 }
