@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace GenshinBuilds.Parser.Updater.Handlers;
 
-public sealed class WeaponUpdateHandler : BaseUpdateHandler, IUpdateHandler<Weapon>
+public sealed class WeaponUpdateHandler : BaseUpdateHandler, IUpdateHandler
 {
     private readonly IParser<IEnumerable<Weapon>> _weaponParser;
 

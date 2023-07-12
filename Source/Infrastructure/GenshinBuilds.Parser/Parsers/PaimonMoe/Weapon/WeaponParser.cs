@@ -1,5 +1,7 @@
-﻿using GenshinBuilds.Domain.Builders;
-using GenshinBuilds.Parser.Helpers;
+﻿using GenshinBuilds.Application;
+using GenshinBuilds.Application.Common.Builders;
+using GenshinBuilds.Domain.Builders;
+
 
 namespace GenshinBuilds.Parser;
 
@@ -7,10 +9,10 @@ internal sealed class WeaponParser
 {
     private readonly HtmlWeb _web;
     private readonly string _baseUrl;
-    private readonly IWeaponBuilder _weaponBuilder;
+    private readonly IValueConverter _valueConverter;
 
-    public WeaponParser(HtmlWeb web, string baseUrl, IWeaponBuilder weaponBuilder)
-        => (_web, _baseUrl, _weaponBuilder) = (web, baseUrl, weaponBuilder);
+    public WeaponParser(HtmlWeb web, string baseUrl, IValueConverter valueConverter)
+        => (_web, _baseUrl, _valueConverter) = (web, baseUrl, valueConverter);
 
     public Weapon GetWeaponAsync(string source)
     {
@@ -31,22 +33,15 @@ internal sealed class WeaponParser
     private Weapon ParseWeaponsBlock(HtmlNode weaponsBlockDiv)
     {
         Weapon weapon = new();
-        foreach (var item in weaponsBlockDiv.ChildNodes)
-        {
-            if (item.Name.Equals("img"))
-                weapon.Image = $"{_baseUrl}{item.Attributes[1].Value}";
-
-            if (!item.Name.Equals("div"))
-                continue;
-
-            weapon = CreateWeapon(item);
-        }
+        weapon = CreateWeapon(weaponsBlockDiv.ChildNodes[0]);
+        weapon.Image = $"{_baseUrl}{weaponsBlockDiv.ChildNodes[2].Attributes[1].Value}";
 
         return weapon;
     }
 
     private Weapon CreateWeapon(HtmlNode node)
-        => _weaponBuilder
+        => new WeaponBuilder(_valueConverter)
+        .Create()
         .SetTile(node.ChildNodes[0].InnerText.Trim('\\', '"'))
         .SetRarity((Rarity)GetWeaponRarity(node.ChildNodes[2]))
         .SetType(GetWeaponTypeName(node.ChildNodes[2]))

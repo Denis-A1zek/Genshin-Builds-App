@@ -1,0 +1,44 @@
+﻿h3{
+    color: white;
+    font-weight: 600;
+}
+
+.empty-list-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.empty-list-img{
+    max-height: 256px;
+    max-width: 256px;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+    
+}
+
+@keyframes dots-animation {
+    0% {
+        content: 'Empty';
+    }
+
+    25% {
+        content: 'Empty.';
+    }
+
+    50% {
+        content: 'Empty..';
+    }
+
+    75% {
+        content: 'Empty...';
+    }
+}
+
+.empty-dots::after {
+    content: 'Empty';
+    animation: dots-animation 2s infinite;
+}

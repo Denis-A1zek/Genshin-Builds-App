@@ -1,0 +1,78 @@
+﻿.element {
+    display: flex;
+    margin-left: 95px;
+    margin-top: -8px;
+    background-color: #2C313F;
+    position: absolute;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+}
+
+.element-image {
+    
+    --glow-color:white;
+    animation: glow-element 2s linear infinite;
+}
+
+
+@keyframes glow-element {
+    from{
+        filter: drop-shadow(-1px 0px 0px var(--glow-color));
+        opacity: 100%;
+    }
+
+    50% {
+        filter: drop-shadow(-1px 0px 2px var(--glow-color));
+        opacity: 75%;
+    }
+
+    100% {
+        filter: drop-shadow(-1px 0px 6px var(--glow-color));
+        opacity: 25%;
+    }
+    to {
+        filter: drop-shadow(-1px 0px 0px var(--glow-color));
+        opacity: 100%;
+    }
+}
+
+
+.flex-character-item {
+    display: flex;
+    flex-direction: column;
+    background-color: #2C313F;
+    box-shadow: -2px 1px 17px 0px rgba(0,0,0,0.20);
+    border-radius: 8px;
+    /*    width: 230px;
+    height: 260px;*/
+    flex: 1, auto;
+}
+
+.character-card {
+    display: flex;
+    flex-direction: column;
+    width: 140px;
+    height: 170px;
+    gap: 1rem;
+}
+
+.character-card-image {
+    align-self: center;
+    border-radius: 12px 12px 0px 0px;
+    
+}
+
+.character-card-body {
+    margin-top: 5px;
+}
+
+h3 {
+    font-weight: 600;
+    margin: 0, 6px, 0, 6px;
+    margin-top: 2px;
+    align-self: center;
+    color: white;
+    text-align: center;
+    font-size: 10px;
+}

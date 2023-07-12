@@ -1,0 +1,63 @@
+﻿@page "/weapons"
+@using GenshinBuilds.Application;
+@using GenshinBuilds.Domain;
+@using GenshinBuilds.Domain.Interfaces;
+@using GenshinBuilds.Domain.Models;
+@using GenshinBuilds.ElectronBlazor.Common.Comparer;
+
+@inject IUnitOfWork _unitOfWork;
+
+<div class="flex-container">
+
+    <div>
+        <h3>Weapon list</h3>
+    </div>
+    <div>
+        <WeaponTypeFilter TEntity="Weapon" Source="Weapon" @bind-ListTypesOfWeapon="FiltredWeapons"></WeaponTypeFilter>      
+    </div>
+
+    @if (!_isBusy && FiltredWeapons.Count != 0)
+    {
+        <div class="flex-weapon-container">
+            @foreach (var weapon in FiltredWeapons)
+            {
+                <div class="flex-weapon">
+                    <WeaponCard Weapon="weapon"></WeaponCard>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="flex-weapon-container-empty">
+            <EmptyList></EmptyList>
+        </div>
+    }
+
+</div>
+
+@code {
+    private bool _isBusy = true;
+    public List<Weapon> Weapon { get; set; } = new();
+    public List<Weapon> FiltredWeapons { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _isBusy = true;
+        var weaponsFromDb = await _unitOfWork.GetRepository<Weapon>().GetAllAsync();
+
+        if (weaponsFromDb is null) return;
+
+        Weapon = weaponsFromDb.ToList();
+
+        FiltredWeapons = Weapon;
+        FiltredWeapons.Sort(new RarityComparer<Weapon>());
+
+
+        _isBusy = false;
+        await base.OnInitializedAsync();
+    }
+
+    
+
+}

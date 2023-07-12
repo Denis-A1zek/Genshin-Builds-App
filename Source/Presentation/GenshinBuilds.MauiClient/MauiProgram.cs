@@ -1,35 +1,42 @@
-﻿using GenshinBuilds.MauiClient.Data;
+﻿using GenshinBuilds.Application;
+using GenshinBuilds.MauiClient.Data;
+
 using GenshinBuilds.Parser;
-using Microsoft.Extensions.Logging;
 using GenshinBuilds.RelationalDb;
-using GenshinBuilds.Application;
+using Microsoft.Extensions.Logging;
+using System;
 
-namespace GenshinBuilds.MauiClient;
-
-public static class MauiProgram
+namespace GenshinBuilds.MauiClient
 {
-    public static MauiApp CreateMauiApp()
+    public static class MauiProgram
     {
-        var builder = MauiApp.CreateBuilder();
-        builder
-            .UseMauiApp<App>()
-            .ConfigureFonts(fonts =>
-            {
-                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-            });
+        public static MauiApp CreateMauiApp()
+        {
+            var builder = MauiApp.CreateBuilder();
+            builder
+                .UseMauiApp<App>()
+                .ConfigureFonts(fonts =>
+                {
+                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                });
 
-        builder.Services.AddMauiBlazorWebView();
-        builder.Services.LoadApplicationDependency();
-        builder.Services.AddParsers();
-        builder.Services.AddRepository();
+            builder.Services.AddMauiBlazorWebView();
+
+            builder.Services.LoadApplicationDependency();
+            builder.Services.AddRepository();
+            builder.Services.AddParsers();
+        
 
 #if DEBUG
-		builder.Services.AddBlazorWebViewDeveloperTools();
-		builder.Logging.AddDebug();
+            builder.Services.AddBlazorWebViewDeveloperTools();
+		    builder.Logging.AddDebug();
 #endif
 
-        builder.Services.AddSingleton<WeatherForecastService>();
+            builder.Services.AddSingleton<WeatherForecastService>();
 
-        return builder.Build();
+            var provider = builder.Services.BuildServiceProvider();
+
+            return builder.Build();
+        }
     }
 }

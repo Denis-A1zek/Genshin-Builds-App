@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GenshinBuilds.Parser.Updater.Checkers;
 
-public class CharacterUpdateChecker : BaseUpdateChecker, IUpdateChecker<Character>
+public class CharacterUpdateChecker : BaseUpdateChecker, IUpdateChecker
 {
     public CharacterUpdateChecker
         (HtmlWeb htmlWeb, IUnitOfWork unitOfWork) : base(htmlWeb, unitOfWork) { }

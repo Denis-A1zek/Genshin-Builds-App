@@ -1,0 +1,98 @@
+.navbar-toggler {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.top-row {
+    height: 3.5rem;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.navbar-brand {
+    font-size: 1.1rem;
+}
+
+.nav-icon{
+    height:28px;
+    width:28px;
+    margin-right: 1rem;
+    fill: white;
+}
+
+.logo {
+    max-width: 100%;
+    height: auto;
+    padding: 1rem;
+    justify-items: center;
+    margin-bottom: 1rem;
+}
+
+.nav-item {
+    position: relative;
+    font-weight: 600;
+    font-size: 1rem;
+    padding-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+    .nav-item:hover {
+        margin-left: 0.6rem;
+    }
+
+    .nav-item:first-of-type {
+        padding-top: 1rem;
+    }
+
+    .nav-item:last-of-type {
+        padding-bottom: 1rem;
+    }
+
+    .nav-item ::deep a {
+        color: #d7d7d7;
+        border-radius: 4px;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        line-height: 3rem;
+    }
+
+.nav-item ::deep a.active {
+    color: white;
+    animation: glow-naw 2s ease infinite;
+}
+
+
+@keyframes glow-naw {
+    0% {
+        filter: drop-shadow(-2px 0px 4px rgb(255,255,255, 0.1));
+    }
+
+    50% {
+        filter: drop-shadow(-2px 0px 4px rgb(255,255,255, 0.8));
+    }
+
+    100% {
+        filter: drop-shadow(-2px 0px 8px rgb(255,255,255, 0.1));
+    }
+}
+
+.nav-item ::deep a:hover {
+
+    filter: drop-shadow(-2px 0px 4px rgb(255,255,255, 0.8));
+    color: white;
+}
+
+@media (min-width: 641px) {
+    .navbar-toggler {
+        display: none;
+    }
+
+    .collapse {
+        /* Never collapse the sidebar for wide screens */
+        display: block;
+    }
+    
+    .nav-scrollable {
+        /* Allow sidebar to scroll for tall menus */
+        height: calc(100vh - 3.5rem);
+        overflow-y: auto;
+    }
+}

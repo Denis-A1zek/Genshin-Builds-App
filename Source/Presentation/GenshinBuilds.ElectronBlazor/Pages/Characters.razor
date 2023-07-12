@@ -1,0 +1,47 @@
+﻿@page "/characters"
+@using GenshinBuilds.Application;
+@using GenshinBuilds.Domain.Models;
+@using GenshinBuilds.ElectronBlazor.Common.Comparer;
+
+@inject IUnitOfWork _unitOfWork;
+
+
+<div class="flex-container">
+    <div>
+        <h3>Character list</h3>
+    </div>
+    <div>
+        <WeaponTypeFilter TEntity="Character" Source="CharactersList" @bind-ListTypesOfWeapon="FiltredCharacters"></WeaponTypeFilter>
+    </div>
+
+    <div class="flex-character-container">
+
+        @foreach (var character in FiltredCharacters)
+        {
+            <CharacterCard Character="character"></CharacterCard>
+        }
+    </div>
+</div>
+
+@code {
+    private bool _isBusy = true;
+    public List<Character> CharactersList { get; set; } = new();
+    public List<Character> FiltredCharacters { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _isBusy = true;
+        var characterFromDb = await _unitOfWork.GetRepository<Character>().GetAllAsync();
+
+        if (characterFromDb is null) return;
+
+        CharactersList = characterFromDb.ToList();
+
+        FiltredCharacters = CharactersList;
+        FiltredCharacters.Sort(new RarityComparer<Character>());
+
+
+        _isBusy = false;
+        await base.OnInitializedAsync();
+    }
+}

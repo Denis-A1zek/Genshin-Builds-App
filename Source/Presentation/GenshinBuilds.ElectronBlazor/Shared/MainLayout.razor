@@ -1,0 +1,89 @@
+﻿@inherits LayoutComponentBase
+
+@using GenshinBuilds.Application.Interfaces;
+
+@inject IDataUpdateManager updateManager;
+
+<PageTitle>GenshinBuilds.ElectronBlazor</PageTitle>
+
+<div class="page">
+    @if (_isBusy)
+    {
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+                <div class="row text-center">
+                    <div>
+                        <h1 class="text-white-glow">Updates from the server</h1>
+                    </div>
+                    <div>
+                        <p style="color: #B6B7C2;">@_checkUpdateResultMessage</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="spinner-border text-light" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    }
+    else if(!_isBusy)
+    {
+        <div class="sidebar">
+            <NavMenu />
+        </div>
+
+        <main>
+            <article class="content px-4">
+                @Body
+            </article>
+        </main>
+    }
+
+</div>
+
+
+@code{
+
+    private bool _isBusy = true;
+    private static SemaphoreSlim semaphore = new SemaphoreSlim(1,1);
+    private string _checkUpdateResultMessage = "checking please wait...";
+
+    protected override async Task OnInitializedAsync()
+    {
+        _isBusy = true;
+        try
+        {
+            semaphore.Wait();
+            var hasUpdate = await updateManager.CheckUpdates();
+            var newUpdateAviable = hasUpdate.Where(s => s.HasUpdates == true).Count() > 0;
+
+            if (!newUpdateAviable)
+            {
+                _checkUpdateResultMessage = "No updates found";
+                _isBusy = false;
+                return;
+            }
+
+            _checkUpdateResultMessage = "data preparation for update";
+
+            var updateResult = await updateManager.Update();
+            if (updateResult is null)
+                return;
+
+
+            _checkUpdateResultMessage = $"{updateResult.Sum(s => s.Count)} entities updated";
+
+            _isBusy = false;
+
+
+            await base.OnInitializedAsync();
+
+        }
+        finally
+        {
+            semaphore.Release();
+        }
+    }
+}

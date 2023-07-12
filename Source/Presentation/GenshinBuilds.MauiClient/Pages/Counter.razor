@@ -1,6 +1,4 @@
 ﻿@page "/counter"
-@using GenshinBuilds.Application;
-@inject IUpdatesCheckerService service;
 
 <h1>Counter</h1>
 
@@ -9,15 +7,7 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
-
-
     private int currentCount = 0;
-
-    protected override async Task OnInitializedAsync()
-    {
-        var result = await service.HasUpdateAsync();
-        base.OnInitialized();
-    }
 
     private void IncrementCount()
     {

@@ -1,4 +1,9 @@
 ﻿using GenshinBuilds.Application;
+using GenshinBuilds.Application.Interfaces;
+using GenshinBuilds.Domain.Models;
+using GenshinBuilds.Parser.Updater;
+using GenshinBuilds.Parser.Updater.Checkers;
+using GenshinBuilds.Parser.Updater.Handlers;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GenshinBuilds.Parser;
@@ -12,6 +17,13 @@ public static class DependenciesExtensions
         services.AddTransient<IParser<IEnumerable<Weapon>>, WeaponsParser>();
         services.AddTransient<IParser<IEnumerable<Character>>, CharactersParser>();
 
+        services.AddScoped<IUpdateChecker, WeaponUpdateChecker>();
+        services.AddScoped<IUpdateChecker, CharacterUpdateChecker>();
+
+        services.AddScoped<IUpdateHandler, WeaponUpdateHandler>();
+        services.AddScoped<IUpdateHandler, CharacterUpdateHandler>();
+
+        services.AddScoped<IDataUpdateManager, DataUpdateManager>();
 
         return services;
     }

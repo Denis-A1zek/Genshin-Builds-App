@@ -1,0 +1,20 @@
+@page "/characters"
+@using GenshinBuilds.Domain;
+@using GenshinBuilds.Domain.Models;
+
+@inject IRepository<Character> _charactersRepository;
+
+<h1>Characters</h1>
+
+
+
+@code {
+    private IEnumerable<Character> _characters;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _characters = await _charactersRepository.GetAllAsync();
+        
+        await base.OnInitializedAsync();
+    }
+}

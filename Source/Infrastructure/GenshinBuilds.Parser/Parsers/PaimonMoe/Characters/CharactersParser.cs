@@ -1,4 +1,5 @@
-﻿using GenshinBuilds.Domain.Interfaces;
+﻿using GenshinBuilds.Application;
+using GenshinBuilds.Domain.Interfaces;
 using GenshinBuilds.Parser.Common;
 
 namespace GenshinBuilds.Parser;
@@ -9,8 +10,8 @@ public class CharactersParser : Parser<IEnumerable<Character>>
 
     private readonly CharacterParser _characterParser;
 
-    public CharactersParser(HtmlWeb web, ICharacterBuilder characterBuilder) : base(web)
-        => _characterParser = new CharacterParser(web, BaseUrl, characterBuilder);
+    public CharactersParser(HtmlWeb web, IValueConverter converter) : base(web)
+        => _characterParser = new CharacterParser(web, BaseUrl, converter);
 
     public override async Task<IEnumerable<Character>> LoadAsync()
     {
@@ -36,7 +37,7 @@ public class CharactersParser : Parser<IEnumerable<Character>>
 
         await Parallel.ForEachAsync(charactersBlock.ChildNodes,
             GetParallelOptions(), async (source, token)
-                =>  ParseCharacter(source, characters));
+                => await ParseCharacter(source, characters));
 
         return characters;
     }
@@ -48,11 +49,11 @@ public class CharactersParser : Parser<IEnumerable<Character>>
            = Convert.ToInt32(Math.Ceiling((Environment.ProcessorCount * 0.75) * 2.0))
        };
 
-    private void ParseCharacter(HtmlNode aNode, List<Character> characters)
+    private async Task ParseCharacter(HtmlNode aNode, List<Character> characters)
     {
         var characterUrl = GetUrlToCharacter(aNode);
         var avatarBlock = $"{BaseUrl}{aNode.SelectSingleNode("div[1]/img").Attributes["src"].Value}";
-        var character = _characterParser.GetCharacterAsync(characterUrl);
+        var character = await _characterParser.GetCharacterAsync(characterUrl);
         character.Avatar = avatarBlock;
         characters.Add(character);
     }

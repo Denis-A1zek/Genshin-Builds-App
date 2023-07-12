@@ -1,0 +1,32 @@
+﻿.flex-weapon-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: start;
+    align-content: start;
+    margin-top: 20px;
+}
+
+.flex-weapon {
+    flex: 0, 0, 50%;
+    margin: 5px;
+    
+}
+
+.flex-weapon-container-empty {
+    display: flex;
+    height: 65vh;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+h3 {
+    color: white;
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    
+}
+

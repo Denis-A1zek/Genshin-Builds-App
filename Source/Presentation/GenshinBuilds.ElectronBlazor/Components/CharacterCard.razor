@@ -1,0 +1,40 @@
+﻿@using GenshinBuilds.Domain.Models;
+@using GenshinBuilds.Domain;
+
+<div class="flex-character-item">
+
+    <div class="element">
+        <img class="element-image" src="@elemntPath[Character.Element]" style="--glow-color: @ElementColor[Character.Element];" />
+    </div>
+    <img class="character-card-image" src="@Character.Avatar" style="@RarityCssStyleHelper.BackgroundGradient[Character.Rarity]" />
+    <div class="character-card-body">
+        <h3>@Character.Name</h3>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Character Character { get; set; }
+
+    private Dictionary<Element, string> elemntPath = new()
+    {
+        { Element.Cryo, "/images/cryo.webp" },
+        { Element.Geo, "/images/geo.webp"},
+        { Element.Electro, "/images/electro.webp"},
+        { Element.Pyro, "/images/pyro.webp"},
+        { Element.Dendro, "/images/dendro.webp"},
+        { Element.Hydro, "/images/hydro.webp"},
+        { Element.Anemo, "/images/anemo.webp"}
+    };
+
+    private Dictionary<Element, string> ElementColor = new()
+    {
+        { Element.Cryo, "#B4E8EC" },
+        { Element.Geo, "yellow"},
+        { Element.Electro, "#B544BB"},
+        { Element.Pyro, "#FFA824"},
+        { Element.Dendro, "#b6ff00"},
+        { Element.Hydro, "#01A8CB"},
+        { Element.Anemo, "green"}
+    };
+}

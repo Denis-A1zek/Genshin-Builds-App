@@ -1,0 +1,65 @@
+﻿h3{
+    color:white;
+}
+
+.card-title {
+    color: #FFFFFF;
+    font-weight:600;
+    font-size: 24px;
+}
+
+.card {
+    background-color: #2C313F;
+    box-shadow: -2px 1px 17px 0px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    width: 640px;
+    height: 200px;
+}
+
+.card-text{
+    font-size: 13px;
+    color:aliceblue;
+}
+
+
+.card-body{
+    margin-right: 10px;
+}
+
+.image-span{
+    padding:20px;
+}
+
+img {
+    border-radius: 5px;
+    max-height:156px;
+    max-width: 156px;
+}
+
+.weapon-type-text{     
+    margin: 0.5rem;  
+}
+
+.star{
+    margin-bottom: 2px;
+}
+
+*{
+    color: white;
+}
+
+@media (max-width: 770px) {
+    img {
+        display: none;
+    }
+
+}
+
+@media (max-width: 900px) {
+    .card {
+        /* Allow sidebar to scroll for tall menus */
+        width: calc(49vh - 5rem);
+        height: calc(30vh + 1.5rem);
+        
+    }
+}

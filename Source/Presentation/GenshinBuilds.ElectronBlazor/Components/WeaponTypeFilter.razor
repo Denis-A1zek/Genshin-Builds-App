@@ -1,0 +1,59 @@
+﻿@using GenshinBuilds.Domain.Interfaces;
+@using GenshinBuilds.Domain.Models;
+@using GenshinBuilds.Domain;
+
+@typeparam TEntity 
+
+<div class="filter-bar">
+    <div class="filter-bar-types">
+        <button class="filter-bar-button @GetButtonClass(1)" @onclick="(() => FiltredButtonClick(WeaponType.Sword, 1))">
+            <img class="filter-bar-icon" src="/images/sword.png" />
+        </button>
+        <button class="filter-bar-button @GetButtonClass(2)" @onclick="(() => FiltredButtonClick(WeaponType.Claymore, 2))">
+            <img class="filter-bar-icon" src="/images/claymore.png" />
+        </button>
+        <button class="filter-bar-button @GetButtonClass(3)" @onclick="(() => FiltredButtonClick(WeaponType.Polearm, 3))">
+            <img class="filter-bar-icon" src="/images/polearm.png" />
+        </button>
+        <button class="filter-bar-button @GetButtonClass(4)" @onclick="(() => FiltredButtonClick(WeaponType.Catalyst, 4))">
+            <img class="filter-bar-icon" src="/images/catalyst.png" />
+        </button>
+        <button class="filter-bar-button @GetButtonClass(5)" @onclick="(() => FiltredButtonClick(WeaponType.Bow, 5))">
+            <img class="filter-bar-icon" src="/images/bow.png" />
+        </button>
+    </div>
+
+</div>
+
+@code {
+    [Parameter]
+    public List<TEntity> Source { get; set; }
+
+    [Parameter]
+    public List<TEntity> ListTypesOfWeapon { get; set; }
+
+    [Parameter]
+    public EventCallback<List<TEntity>> ListTypesOfWeaponChanged { get; set; }
+
+
+    private Dictionary<int, WeaponType> _selectedFiltredButton = new()
+    {
+        {1, WeaponType.Sword }, {2, WeaponType.Claymore }, {3, WeaponType.Polearm }, {4 ,WeaponType.Catalyst }, {5, WeaponType.Bow }
+    };
+
+    private async Task FiltredButtonClick(WeaponType type, int buttonId)
+    {
+        if (_selectedFiltredButton.ContainsKey(buttonId))
+            _selectedFiltredButton.Remove(buttonId);
+        else
+            _selectedFiltredButton.Add(buttonId, type);
+
+        ListTypesOfWeapon = Source.Where(w => _selectedFiltredButton.ContainsValue(((IContainTypeOfWeapon)w).WeaponType)).ToList();
+        await ListTypesOfWeaponChanged.InvokeAsync(ListTypesOfWeapon);
+    }
+
+    private string GetButtonClass(int buttonId)
+    {
+        return _selectedFiltredButton.ContainsKey(buttonId) ? "selected" : "";
+    }
+}

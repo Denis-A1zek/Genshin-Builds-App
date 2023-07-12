@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GenshinBuilds.Application;
 
-public interface IUpdateHandler<T>
+public interface IUpdateHandler
 {
     public Task<UpdateResult> UpdateAsync(bool isDeepUpdate = false);    
 }

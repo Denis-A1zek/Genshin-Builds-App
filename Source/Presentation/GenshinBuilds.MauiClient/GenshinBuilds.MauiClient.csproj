@@ -17,7 +17,7 @@
 
         <!-- App Identifier -->
         <ApplicationId>com.companyname.genshinbuilds.mauiclient</ApplicationId>
-        <ApplicationIdGuid>32D05E4D-9E8D-4388-BFB3-2AFB4A93C48D</ApplicationIdGuid>
+        <ApplicationIdGuid>14A8F2F1-654D-4355-A9BA-9D1E24A7E71E</ApplicationIdGuid>
 
         <!-- Versions -->
         <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -51,6 +51,10 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Services\" />
     </ItemGroup>
 
     <ItemGroup>

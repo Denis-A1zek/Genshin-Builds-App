@@ -1,18 +1,44 @@
-.app-container {
-    display: grid;
-    width: 96%;
-    margin: 0 auto;
-    gap: 1.8rem;
-    grid-template-columns: 12rem auto 23rem;
-}
-
-main{
-    margin-top: 1.4rem;
+.page {
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 
 
-/*@media (max-width: 640.98px) {
+main {
+    flex: 1;
+}
+
+.sidebar {
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(32,36,66,1) 0%, rgba(1,19,79,1) 100%);
+}
+
+.top-row {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #d6d5d5;
+    justify-content: flex-end;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+}
+
+    .top-row ::deep a, .top-row ::deep .btn-link {
+        white-space: nowrap;
+        margin-left: 1.5rem;
+        text-decoration: none;
+    }
+
+    .top-row ::deep a:hover, .top-row ::deep .btn-link:hover {
+        text-decoration: underline;
+    }
+
+    .top-row ::deep a:first-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+@media (max-width: 640.98px) {
     .top-row:not(.auth) {
         display: none;
     }
@@ -49,4 +75,3 @@ main{
         padding-right: 1.5rem !important;
     }
 }
-*/

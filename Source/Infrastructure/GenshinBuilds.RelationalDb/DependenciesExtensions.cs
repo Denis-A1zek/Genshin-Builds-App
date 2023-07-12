@@ -1,24 +1,28 @@
 ﻿using GenshinBuilds.Application;
-using GenshinBuilds.Domain.Models;
+using GenshinBuilds.Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GenshinBuilds.RelationalDb
 {
     public static class DependenciesExtensions
     {
-        public static IServiceCollection AddRepository(this IServiceCollection services)
+        public static IServiceCollection AddRepository
+            (this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<DatabaseContext>(options => options.UseSqlite("Data Source=NotesDb.db"));
-            
+
+            var connectionString = configuration.GetConnectionString(nameof(DatabaseContext));
+            services.AddDbContext<DatabaseContext>(options =>
+            {
+                options.UseSqlite(connectionString);
+            });
+
+           
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            
+
             return services;
         }
     }
 }
+
