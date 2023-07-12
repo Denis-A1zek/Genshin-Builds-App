@@ -1,6 +1,8 @@
-﻿namespace GenshinBuilds.Domain.Models;
+﻿using GenshinBuilds.Domain.Interfaces;
 
-public sealed record Character : Identity
+namespace GenshinBuilds.Domain.Models;
+
+public sealed record Character : Identity, IUpdateble, IContainTypeOfWeapon, IRare
 {
     public string Name { get; set; }   
     public string Description { get; set; }
