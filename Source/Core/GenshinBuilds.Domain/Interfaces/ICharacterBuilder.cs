@@ -10,6 +10,7 @@ namespace GenshinBuilds.Domain.Interfaces;
 
 public interface ICharacterBuilder
 {
+    public ICharacterBuilder Create();
     public ICharacterBuilder SetName(string name);
     public ICharacterBuilder SetDescription(string description);
     public ICharacterBuilder SetFullImage(string fullImageUrl);

@@ -10,6 +10,7 @@ namespace GenshinBuilds.Domain.Builders;
 
 public interface IWeaponBuilder
 {
+    public IWeaponBuilder Create();
     public IWeaponBuilder SetTile(string title);
     public IWeaponBuilder SetDescription(string description);
     public IWeaponBuilder SetImage(string imageUrl);
