@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace GenshinBuilds.Application.Interfaces;
 
-public interface IDataUpdateManager
+public interface IDataUpdateManagerParser
 {
+    Task<IReadOnlyCollection<UpdateDetails>> CheckUpdates();
     Task<IReadOnlyCollection<UpdateResult>> Update(IUpdateble[] updateble = null);
 }
