@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GenshinBuilds.Application.Common.Models
 {
-    public class MinimalCharacter : IContainWeaponType, IRare
+    public class MinimalCharacter : IContainWeaponType, IRare, IHaveElement
     {
         public Guid Id { get; set; }    
         public string Name { get; set; }    
