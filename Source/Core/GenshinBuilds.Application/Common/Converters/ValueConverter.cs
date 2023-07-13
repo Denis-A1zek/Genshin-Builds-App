@@ -52,7 +52,7 @@ public class ValueConverter : IValueConverter
         throw new ConverterNotFoundException($"Converter not found for type {fromType}.");
     }
 
-   
     protected bool Contains(string source, string value)
         => source.Contains(value, StringComparison.InvariantCultureIgnoreCase);
+
 }

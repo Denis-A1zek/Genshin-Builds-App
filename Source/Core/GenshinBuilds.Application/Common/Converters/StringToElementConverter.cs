@@ -11,16 +11,33 @@ namespace GenshinBuilds.Application.Common.Converters;
 
 public class StringToElementConverter : ValueConverter, IConverter<string, Element>
 {
-    public Element Convert(string value)
-        => value switch
+    Dictionary<string, Element> languageMappings = new()
         {
-            string when Contains(value, "geo") => Element.Geo,
-            string when Contains(value, "electro") => Element.Electro,
-            string when Contains(value, "anemo") => Element.Anemo,
-            string when Contains(value, "pyro") => Element.Pyro,
-            string when Contains(value, "hydro") => Element.Hydro,
-            string when Contains(value, "cryo") => Element.Cryo,
-            string when Contains(value, "dendro") => Element.Dendro,
-            _ => Element.None
+            { "geo", Element.Geo },
+            { "anemo", Element.Anemo },
+            { "pyro", Element.Pyro },
+            { "hydro", Element.Hydro },
+            { "cryo", Element.Cryo },
+            { "dendro", Element.Dendro },
+            { "electro", Element.Electro },
+            { "электро", Element.Electro },
+            { "гео", Element.Geo },
+            { "анемо", Element.Anemo },
+            { "пиро", Element.Pyro },
+            { "гидро", Element.Hydro },
+            { "крио", Element.Cryo },
+            { "дендро", Element.Dendro }
         };
+
+    public Element Convert(string value)
+    {
+        value = value.ToLower();
+
+        if (languageMappings.ContainsKey(value))
+        {
+            return languageMappings[value];
+        }
+
+        return Element.None;
+    }
 }
