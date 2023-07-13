@@ -19,5 +19,12 @@ internal class WeaponTypeConfiguration : IdentityTypeConfiguration<Weapon>
             modifier.Property(m => m.Title);
             modifier.Property(m => m.Description);
         });
+
+        builder.OwnsOne(w => w.Characteristics, characteristics =>
+        {
+            characteristics.Property(m => m.SubValue);
+            characteristics.Property(m => m.SubStat);
+            characteristics.Property(m => m.BaseAtk);
+        });
     }
 }
