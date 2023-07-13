@@ -23,7 +23,7 @@ public static class DependenciesExtensions
         services.AddScoped<IUpdateHandler, WeaponUpdateHandler>();
         services.AddScoped<IUpdateHandler, CharacterUpdateHandler>();
 
-        services.AddScoped<IDataUpdateManager, DataUpdateManager>();
+        services.AddScoped<IDataUpdateManagerParser, DataUpdateManager>();
 
         return services;
     }

@@ -1,5 +1,6 @@
 ﻿
 using GenshinBuilds.Application;
+using GenshinBuilds.Application.Interfaces;
 
 namespace GenshinBuilds.Parser.Common;
 

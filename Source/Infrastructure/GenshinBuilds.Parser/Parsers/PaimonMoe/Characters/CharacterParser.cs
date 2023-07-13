@@ -39,7 +39,7 @@ internal class CharacterParser
         var characterInfoBlock = characterBlock.SelectSingleNode("div");
 
         var character = CreateCharacter(characterInfoBlock);
-        character.FullImage = $"{_baseUrl}{characterBlock.ChildNodes[0].Attributes["src"].Value}";
+        character.Image = $"{_baseUrl}{characterBlock.ChildNodes[0].Attributes["src"].Value}";
 
         return character;
     }
@@ -51,7 +51,7 @@ internal class CharacterParser
             .SetWeaponType(ParseWeaponType(characterBlock.ChildNodes[2]))
             .SetDescription(characterBlock.ChildNodes[4].InnerText)
             .SetElement(characterBlock.ChildNodes[0].SelectSingleNode("img").Attributes["src"].Value)
-            .SetElementImage(characterBlock.ChildNodes[0].SelectSingleNode("img").Attributes["src"].Value)
+            .SetFullImage(characterBlock.ChildNodes[0].SelectSingleNode("img").Attributes["src"].Value)
             .SetRarity(ParseCharacterRarity(characterBlock.ChildNodes[2]))
             .SetWeaponType(ParseWeaponType(characterBlock.ChildNodes[2]))
             .Build();
