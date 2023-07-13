@@ -1,0 +1,80 @@
+﻿@using GenshinBuilds.Application.Common.Models;
+@using GenshinBuilds.Application.Common.Models.Artifacts;
+@using GenshinBuilds.Domain.Enum;
+
+<div class="flex-card">
+    <div class="flex-card-item">
+        <div class="flex-card-item-artifacts">
+            <div class="flex-card-item-artifacts-item">
+                <img class="artifact-image" src="@_mainArtifact.Image" />
+            </div>
+            <div class="flex-card-item-artifacts-item">
+                <div class="flex-card-item-artifacts-item-row">
+                    <h3 class="artifact-title">@ArtifactSet.Name</h3>
+                </div>
+                <div class="flex-card-item-artifacts-item-row">
+                    <p class="artifact-rarity">Редкость: @ArtifactSet.MaxRarity</p>
+                </div>
+                <div class="flex-card-item-artifacts-item-row">
+                    @foreach (var artifactItem in ArtifactSet.Artifacts)
+                    {
+                        <img class="artifact-item-image" src="@artifactItem.Image" title="@artifactItem.Name"/>
+                    }
+                </div>
+            </div>         
+        </div>
+    </div>
+    <div class="flex-card-item">
+        <div class="flex-card-item-stats">
+            @if (ArtifactSet.Stats.Count() > 1)
+            {
+                <div>
+                    <p><span class="flex-card-item-stats-span">2</span> @ArtifactSet.Stats[0]</p>
+                </div>
+                <div class="flex-card-item-stats-4">
+                    <div class="flex-card-item-stats-4-text">
+                        <p style="margin-top: 2px;"><span class="flex-card-item-stats-span">4</span> @ArtifactSet.Stats[1]</p>
+                    </div>
+                    <div class="flex-card-item-stats-4-dot">
+                        <p>...</p>
+                    </div>
+
+                </div>
+            }
+            else
+            {
+                <div class="flex-card-item-stats-1">
+                    <p><span class="flex-card-item-stats-span">1</span> @ArtifactSet.Stats[0]</p>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public MinimalArtifactSet ArtifactSet { get; set; }
+
+    private ArtifactItem _mainArtifact = new();
+
+    private bool _isEmpty = false;
+
+    protected override void OnInitialized()
+    {
+        if(ArtifactSet.Artifacts.Count > 1)
+        {
+            _mainArtifact = ArtifactSet
+            .Artifacts
+            .Where(a => a.Type.Equals(RelicType.Flower))
+            .FirstOrDefault();
+        }
+        else
+        {
+            _mainArtifact = ArtifactSet.Artifacts.First();
+        }
+
+
+        base.OnInitialized();
+    }
+}

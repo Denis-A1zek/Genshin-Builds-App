@@ -19,6 +19,8 @@ public interface IWeaponBuilder
     public IWeaponBuilder SetRarity(string rarity);
     public IWeaponBuilder SetRarity(Rarity rarity);
     public IWeaponBuilder SetModifire(Modifire modifire);
+    public IWeaponBuilder SetWeaponCharacteristics(WeaponCharacteristics characteristics);
+    public IWeaponBuilder SetStory(string story);
     public Weapon Build();
 }
  

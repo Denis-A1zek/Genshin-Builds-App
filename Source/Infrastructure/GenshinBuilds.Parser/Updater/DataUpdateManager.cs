@@ -5,7 +5,7 @@ using GenshinBuilds.Domain.Interfaces;
 
 namespace GenshinBuilds.Parser.Updater;
 
-public class DataUpdateManager : IDataUpdateManager
+public class DataUpdateManager : IDataUpdateManagerParser
 {
     private readonly IEnumerable<IUpdateChecker> _updateCheckers;
     private readonly IEnumerable<IUpdateHandler> _updateHandlers;

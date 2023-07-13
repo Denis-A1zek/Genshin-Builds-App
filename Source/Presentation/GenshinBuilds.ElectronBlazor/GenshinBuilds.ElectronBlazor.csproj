@@ -9,8 +9,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\GenshinBuilds.Application\GenshinBuilds.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\GenshinBuilds.GenshinDbApi\GenshinBuilds.GenshinDbApi.csproj" />
     <ProjectReference Include="..\..\Infrastructure\GenshinBuilds.Parser\GenshinBuilds.Parser.csproj" />
     <ProjectReference Include="..\..\Infrastructure\GenshinBuilds.RelationalDb\GenshinBuilds.RelationalDb.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\GenshinBuilds.Updater\GenshinBuilds.Updater.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="electron.manifest.json">

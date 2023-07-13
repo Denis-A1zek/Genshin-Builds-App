@@ -10,5 +10,7 @@ public sealed record Weapon : Identity, IUpdateble, IContainTypeOfWeapon, IRare
     public WeaponType WeaponType { get; set; }
     public Rarity Rarity { get; set; }
     public Modifire? Modifier { get; set; }
+    public string? Story { get; set; }
+    public WeaponCharacteristics? Characteristics { get; set; } 
 
 }

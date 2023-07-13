@@ -3,6 +3,7 @@
 @using GenshinBuilds.Application.Interfaces;
 
 @inject IDataUpdateManager updateManager;
+@inject IConfiguration configuration;
 
 <PageTitle>GenshinBuilds.ElectronBlazor</PageTitle>
 
@@ -50,40 +51,19 @@
     private static SemaphoreSlim semaphore = new SemaphoreSlim(1,1);
     private string _checkUpdateResultMessage = "checking please wait...";
 
+
     protected override async Task OnInitializedAsync()
     {
         _isBusy = true;
-        try
-        {
-            semaphore.Wait();
-            var hasUpdate = await updateManager.CheckUpdates();
-            var newUpdateAviable = hasUpdate.Where(s => s.HasUpdates == true).Count() > 0;
 
-            if (!newUpdateAviable)
-            {
-                _checkUpdateResultMessage = "No updates found";
-                _isBusy = false;
-                return;
-            }
+        var updateResult = await updateManager.Update();
+        if (updateResult is null)
+            return;
 
-            _checkUpdateResultMessage = "data preparation for update";
+        _checkUpdateResultMessage = $"{updateResult.Sum(s => s.Count)} entities updated";
 
-            var updateResult = await updateManager.Update();
-            if (updateResult is null)
-                return;
+        _isBusy = false;
 
-
-            _checkUpdateResultMessage = $"{updateResult.Sum(s => s.Count)} entities updated";
-
-            _isBusy = false;
-
-
-            await base.OnInitializedAsync();
-
-        }
-        finally
-        {
-            semaphore.Release();
-        }
+        await base.OnInitializedAsync();
     }
 }

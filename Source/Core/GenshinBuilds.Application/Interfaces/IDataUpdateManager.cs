@@ -10,6 +10,5 @@ namespace GenshinBuilds.Application.Interfaces;
 
 public interface IDataUpdateManager
 {
-    Task<IReadOnlyCollection<UpdateDetails>> CheckUpdates();
     Task<IReadOnlyCollection<UpdateResult>> Update(IUpdateble[] updateble = null);
 }

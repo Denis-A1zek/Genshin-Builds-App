@@ -1,17 +1,20 @@
 ﻿using GenshinBuilds.Application.Common.Resolvers;
+using GenshinBuilds.Application.Interfaces;
 using GenshinBuilds.Application;
+using GenshinBuilds.GenshinDbApi.Providers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GenshinBuilds.Application.Common.Builders;
 using GenshinBuilds.Application.Common.Converters;
-using GenshinBuilds.Parser.Parsers.Artifacts;
 
-namespace GenshinBuilds.IntegrationTesting.Parser
+namespace GenshinBuilds.IntegrationTesting.GenshinDbApi
 {
-    public class ArtifactListParserTests : ParserTests<CharactersParser>
+    public class CharacterProviderTest
     {
+        IDataProvider<IEnumerable<Character>> _characterProvider;
         private IValueConverter _valueConverter;
 
         [SetUp]
@@ -23,21 +26,16 @@ namespace GenshinBuilds.IntegrationTesting.Parser
                 options.RegisterConverter(new StringToRarityConverter());
                 options.RegisterConverter(new StringToElementConverter());
             });
+            _characterProvider = new CharactersProvider(new HttpClient(), new CharacterBuilder(_valueConverter));
 
         }
 
         [Test]
-        public async Task LoadAsync_WithValidHtmlPage_ShouldReturnCharacters()
+        public async Task Test1()
         {
-            //Arange
-            var _parser = new ArtifactsParser(new HtmlWeb(), _valueConverter);
+            var result = await _characterProvider.LoadAsync();
 
-            //Act
-            var result = await _parser.LoadAsync();
-
-            //Assert
-            result.Should().NotBeNull().And.HaveCountGreaterThan(0);
-            result.Should().AllBeOfType<ArtifactSet>();
+            Assert.IsNotNull(result);
         }
     }
 }

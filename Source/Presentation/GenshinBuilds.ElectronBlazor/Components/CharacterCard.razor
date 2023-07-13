@@ -1,12 +1,13 @@
-﻿@using GenshinBuilds.Domain.Models;
+﻿@using GenshinBuilds.Application.Common.Models;
+@using GenshinBuilds.Domain.Models;
 @using GenshinBuilds.Domain;
 
 <div class="flex-character-item">
 
     <div class="element">
-        <img class="element-image" src="@elemntPath[Character.Element]" style="--glow-color: @ElementColor[Character.Element];" />
+        <img class="element-image" src="@elemntPath[Character.Element]" style="--glow-color: @ElementColor[Character.Element];"/>
     </div>
-    <img class="character-card-image" src="@Character.Avatar" style="@RarityCssStyleHelper.BackgroundGradient[Character.Rarity]" />
+    <img class="character-card-image" src="@Character.Avatar" style="@RarityCssStyleHelper.BackgroundGradient[Character.Rarity]" onerror="this.onerror=null; this.src='images/error.png'" />
     <div class="character-card-body">
         <h3>@Character.Name</h3>
     </div>
@@ -14,7 +15,7 @@
 
 @code {
     [Parameter]
-    public Character Character { get; set; }
+    public MinimalCharacter Character { get; set; }
 
     private Dictionary<Element, string> elemntPath = new()
     {
@@ -24,7 +25,8 @@
         { Element.Pyro, "/images/pyro.webp"},
         { Element.Dendro, "/images/dendro.webp"},
         { Element.Hydro, "/images/hydro.webp"},
-        { Element.Anemo, "/images/anemo.webp"}
+        { Element.Anemo, "/images/anemo.webp"},
+        { Element.None, "/images/geo.webp" }
     };
 
     private Dictionary<Element, string> ElementColor = new()
@@ -35,6 +37,7 @@
         { Element.Pyro, "#FFA824"},
         { Element.Dendro, "#b6ff00"},
         { Element.Hydro, "#01A8CB"},
-        { Element.Anemo, "green"}
+        { Element.Anemo, "green"},
+        { Element.None, "" }
     };
 }

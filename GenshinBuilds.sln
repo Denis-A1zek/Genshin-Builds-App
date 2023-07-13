@@ -27,6 +27,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenshinBuilds.UnitTesting",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenshinBuilds.ElectronBlazor", "Source\Presentation\GenshinBuilds.ElectronBlazor\GenshinBuilds.ElectronBlazor.csproj", "{3B67788E-0151-4086-A855-537DAFAC31B5}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenshinBuilds.GenshinDbApi", "Source\Infrastructure\GenshinBuilds.GenshinDbApi\GenshinBuilds.GenshinDbApi.csproj", "{C7722358-3C99-4463-B6DF-9A753923DEB4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenshinBuilds.Updater", "Source\Infrastructure\GenshinBuilds.Updater\GenshinBuilds.Updater.csproj", "{8ECF90D7-6104-457D-B55A-A835BBCE5FC0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +65,14 @@ Global
 		{3B67788E-0151-4086-A855-537DAFAC31B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B67788E-0151-4086-A855-537DAFAC31B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B67788E-0151-4086-A855-537DAFAC31B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7722358-3C99-4463-B6DF-9A753923DEB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7722358-3C99-4463-B6DF-9A753923DEB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7722358-3C99-4463-B6DF-9A753923DEB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7722358-3C99-4463-B6DF-9A753923DEB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ECF90D7-6104-457D-B55A-A835BBCE5FC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ECF90D7-6104-457D-B55A-A835BBCE5FC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ECF90D7-6104-457D-B55A-A835BBCE5FC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ECF90D7-6104-457D-B55A-A835BBCE5FC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +88,8 @@ Global
 		{30B035B6-3A58-4575-B732-D7B81FFE8978} = {38F6167D-C336-4274-8D08-8C3E3405F0B2}
 		{440A0150-2CA7-4D04-8C5F-2478E69AADD5} = {F0D15D19-22AA-4861-86EE-E26B3145A1F6}
 		{3B67788E-0151-4086-A855-537DAFAC31B5} = {ED763513-D7F2-44F5-ABEF-CBEA0BAC5A3B}
+		{C7722358-3C99-4463-B6DF-9A753923DEB4} = {38F6167D-C336-4274-8D08-8C3E3405F0B2}
+		{8ECF90D7-6104-457D-B55A-A835BBCE5FC0} = {38F6167D-C336-4274-8D08-8C3E3405F0B2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {309DB95A-0423-4472-8F41-ED5B02F57251}

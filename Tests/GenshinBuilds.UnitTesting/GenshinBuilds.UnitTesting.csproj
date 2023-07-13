@@ -25,6 +25,7 @@
     <ProjectReference Include="..\..\Source\Core\GenshinBuilds.Application\GenshinBuilds.Application.csproj" />
     <ProjectReference Include="..\..\Source\Infrastructure\GenshinBuilds.Parser\GenshinBuilds.Parser.csproj" />
     <ProjectReference Include="..\..\Source\Infrastructure\GenshinBuilds.RelationalDb\GenshinBuilds.RelationalDb.csproj" />
+    <ProjectReference Include="..\..\Source\Infrastructure\GenshinBuilds.Updater\GenshinBuilds.Updater.csproj" />
   </ItemGroup>
 
 </Project>

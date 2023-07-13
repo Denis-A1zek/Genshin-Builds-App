@@ -1,16 +1,15 @@
 ﻿.element {
     display: flex;
-    margin-left: 95px;
-    margin-top: -8px;
-    background-color: #2C313F;
+    margin-left: 120px;
+    margin-top: -15px;
+    
     position: absolute;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 32px;
+    height: 32px;
 }
 
 .element-image {
-    
     --glow-color:white;
     animation: glow-element 2s linear infinite;
 }
@@ -58,9 +57,10 @@
 }
 
 .character-card-image {
+    width: 140px;
+    height: 140px;
     align-self: center;
     border-radius: 12px 12px 0px 0px;
-    
 }
 
 .character-card-body {

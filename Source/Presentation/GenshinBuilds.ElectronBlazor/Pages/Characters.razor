@@ -1,17 +1,20 @@
 ﻿@page "/characters"
 @using GenshinBuilds.Application;
+@using GenshinBuilds.Application.Common.Models;
+@using GenshinBuilds.Application.Services.Interfaces;
 @using GenshinBuilds.Domain.Models;
 @using GenshinBuilds.ElectronBlazor.Common.Comparer;
 
 @inject IUnitOfWork _unitOfWork;
+@inject ICharacterInformationService _characterService; 
 
 
 <div class="flex-container">
     <div>
-        <h3>Character list</h3>
+        <h3>Список персонажей</h3>
     </div>
     <div>
-        <WeaponTypeFilter TEntity="Character" Source="CharactersList" @bind-ListTypesOfWeapon="FiltredCharacters"></WeaponTypeFilter>
+        <WeaponTypeFilter TEntity="MinimalCharacter" Source="CharactersList" @bind-ListTypesOfWeapon="FiltredCharacters"></WeaponTypeFilter>
     </div>
 
     <div class="flex-character-container">
@@ -25,21 +28,19 @@
 
 @code {
     private bool _isBusy = true;
-    public List<Character> CharactersList { get; set; } = new();
-    public List<Character> FiltredCharacters { get; set; } = new();
+    public List<MinimalCharacter> CharactersList { get; set; } = new();
+    public List<MinimalCharacter> FiltredCharacters { get; set; } = new();
 
     protected override async Task OnInitializedAsync()
     {
         _isBusy = true;
-        var characterFromDb = await _unitOfWork.GetRepository<Character>().GetAllAsync();
+        var characters = await _characterService.GetAllMinimalCharacterInfo();
 
-        if (characterFromDb is null) return;
+        if (characters is null) return;
 
-        CharactersList = characterFromDb.ToList();
-
+        CharactersList = characters.ToList();
         FiltredCharacters = CharactersList;
-        FiltredCharacters.Sort(new RarityComparer<Character>());
-
+        FiltredCharacters.Sort(new RarityComparer<MinimalCharacter>());
 
         _isBusy = false;
         await base.OnInitializedAsync();

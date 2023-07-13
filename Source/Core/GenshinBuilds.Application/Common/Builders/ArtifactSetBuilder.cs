@@ -36,15 +36,14 @@ public sealed class ArtifactSetBuilder : IArtifactSetBuilder
         return this;
     }
 
-    public IArtifactSetBuilder SetDescription(string description)
+    public IArtifactSetBuilder SetName(string name)
     {
-        _artifact.Description = description;
+        _artifact.Name = name;
         return this;
     }
 
-    public IArtifactSetBuilder SetRarity(string rarity)
+    public IArtifactSetBuilder AddRarity(IReadOnlyList<string> rarity)
     {
-        SetRarity(_converter.Convert<string, Rarity>(rarity));
         return this;
     }
 
@@ -54,9 +53,18 @@ public sealed class ArtifactSetBuilder : IArtifactSetBuilder
         return this;
     }
 
-    public IArtifactSetBuilder SetTitle(string title)
+    public IArtifactSetBuilder AddStats(string[] stats)
     {
-        _artifact.Title = title;
+        _artifact.Stats.AddRange(stats);
+        return this;
+    }
+
+    public IArtifactSetBuilder SetArtifact(List<Artifact> artifact)
+    {
+        foreach(var item in artifact)
+        {
+            AddArtifact(item);
+        }
         return this;
     }
 }

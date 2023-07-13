@@ -10,10 +10,11 @@ namespace GenshinBuilds.Domain.Interfaces;
 public interface IArtifactSetBuilder
 {
     public IArtifactSetBuilder Create();
-    public IArtifactSetBuilder SetTitle(string title);
-    public IArtifactSetBuilder SetDescription(string description);
-    public IArtifactSetBuilder SetRarity(string rarity);
+    public IArtifactSetBuilder SetName(string name);
+    public IArtifactSetBuilder AddRarity(IReadOnlyList<string> rarity);
     public IArtifactSetBuilder SetRarity(Rarity rarity);
+    public IArtifactSetBuilder AddStats(string[] stats);
     public IArtifactSetBuilder AddArtifact(Artifact artifact);
+    public IArtifactSetBuilder SetArtifact(List<Artifact> artifact);
     public ArtifactSet Build();
 }

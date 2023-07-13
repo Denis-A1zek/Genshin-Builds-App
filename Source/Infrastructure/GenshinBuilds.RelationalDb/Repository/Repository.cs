@@ -42,4 +42,28 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Identity
 
     public async Task InsertRangeAsync(IEnumerable<TEntity> entities)
         => await _dbSet.AddRangeAsync(entities);
+
+    public async Task<List<TEntity>> Include(params Expression<Func<TEntity, object>>[] includes)
+    {
+        IQueryable<TEntity> query = _dbSet;
+
+        foreach (var include in includes)
+        {
+            query = query.Include(include);
+        }
+
+        return await query.ToListAsync();
+    }
+
+    //public IQueryable<TEntity> Includes(params Expression<Func<TEntity, object>>[] includes)
+    //{
+    //    IQueryable<TEntity> query = _dbSet;
+
+    //    foreach (var include in includes)
+    //    {
+    //        query = query.Include(include);
+    //    }
+
+    //    return query;
+    //}
 }

@@ -1,0 +1,120 @@
+﻿.flex-card {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: normal;
+    align-items: stretch;
+    align-content: stretch;
+    max-height: 240px;
+    max-width: 640px;
+    height: 240px;
+    width: 640px;
+    background-color: #2C313F;
+    border-radius: 15px;
+    box-shadow: -2px 1px 17px 0px rgba(0,0,0,0.15);
+}
+
+.flex-card-item {
+    display: block;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+    order: 0;
+    
+}
+
+.flex-card-item-stats{
+    margin-left: 15px;
+}
+
+.flex-card-item-artifacts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: normal;
+    align-items: normal;
+    align-content: normal;
+}
+
+.flex-card-item-artifacts-item {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+}
+
+.flex-card-item-artifacts-item-row {
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+    margin-left: 10px;
+    order: 0;
+}
+
+.artifact-rarity{
+    font-size: 16px;
+}
+
+.artifact-item-image{
+    width: 50px;
+    height: 50px;
+    margin-right: 6px;
+    margin-bottom: 20px;
+}
+.flex-card-item-stats{
+    font-size: 14px;
+    margin-right: 20px;
+}
+
+.flex-card-item-stats-span {
+    padding: 2px;
+    margin-right: 5px;
+    border-radius: 6px;
+    border: solid 1px gray;
+    background-color: #424B58;
+    opacity: 0.7;
+}
+
+.flex-card-item-stats-4 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+}
+
+
+
+.flex-card-item-stats-4-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.flex-card-item-stats-4-dot {
+}
+
+.artifact-title{
+    margin-top: 10px;
+    font-size: 28px;
+}
+
+
+
+.artifact-image {
+    width: 150px;
+    height: 150px;
+}
+
+p {
+    color: #939BA7;
+}
+h3{
+    color:white;
+}

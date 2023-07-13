@@ -1,16 +1,17 @@
-﻿@using GenshinBuilds.Domain.Models;
+﻿@using GenshinBuilds.Application.Common.Models;
+@using GenshinBuilds.Domain.Models;
 
 <div class="card" style="max-width: 640px;">
     <div class="row no-gutters">
         <div class="col-md-4 image-block">
             <div class="image-span">
-                <img src="@Weapon.Image" class="card-img" style="@RarityCssStyleHelper.BackgroundGradient[Weapon.Rarity]" alt="@Weapon.Title">
+                <img src="@Weapon.Image" class="card-img" style="@RarityCssStyleHelper.BackgroundGradient[Weapon.Rarity]" alt="@Weapon.Name">
             </div>
         </div>
         <div class="col-md-8">
             <div class="card-body">
                     
-                <h5 class="card-title">@Weapon.Title</h5>
+                <h5 class="card-title">@Weapon.Name</h5>
                 <p class="card-text">
                     <div>
                         @for (int i = 0; i < (int)Weapon.Rarity; i++)
@@ -31,7 +32,7 @@
 
 @code {
     [Parameter]
-    public Weapon Weapon { get; set; }
+    public MinimalWeapon Weapon { get; set; }
 
     private bool _isEmpty = false;
 }

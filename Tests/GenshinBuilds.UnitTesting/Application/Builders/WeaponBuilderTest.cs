@@ -38,6 +38,7 @@ public class WeaponBuilderTest
             .Returns(Rarity.Legendary);
 
         var weapon = _weaponBuilder
+            .Create()
             .SetTile("Some title")
             .SetDescription("Some desc")
             .SetType("Bow")

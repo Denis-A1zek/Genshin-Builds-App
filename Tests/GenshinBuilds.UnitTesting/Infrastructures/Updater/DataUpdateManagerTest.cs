@@ -9,10 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GenshinBuilds.Application.Interfaces;
-using GenshinBuilds.Parser.Updater;
 using GenshinBuilds.Application.Common.Models;
 using AutoFixture;
 using FluentAssertions;
+using GenshinBuilds.Updater;
 
 namespace GenshinBuilds.UnitTesting.Infrastructures.Updater
 {
@@ -33,25 +33,10 @@ namespace GenshinBuilds.UnitTesting.Infrastructures.Updater
 
             _weaponUpdateHandler = new Mock<IUpdateHandler>();
 
-            _dataUpdateManager = new DataUpdateManager(new List<IUpdateChecker>()
-            {
-                _weaponChecker.Object, _characterChecker.Object
-            }, new List<IUpdateHandler>()
+            _dataUpdateManager = new GenshinBuilds.Updater.DataUpdateManager(new List<IUpdateHandler>()
             {
                 _weaponUpdateHandler.Object
             });
-        }
-
-        [Test]
-        public async Task Test1()
-        {
-            var fixture = FixtureFactory.Fixture;
-            _weaponChecker.Setup(s => s.HasUpdateAsync()).ReturnsAsync(fixture.Create<UpdateDetails>());
-            _characterChecker.Setup(s => s.HasUpdateAsync()).ReturnsAsync(fixture.Create<UpdateDetails>());
-
-            var result = await _dataUpdateManager.CheckUpdates();
-
-            result.Should().NotBeNull();
         }
 
         [Test]
