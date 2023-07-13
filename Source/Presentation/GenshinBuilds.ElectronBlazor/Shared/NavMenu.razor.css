@@ -12,6 +12,7 @@
 }
 
 .nav-icon{
+
     height:28px;
     width:28px;
     margin-right: 1rem;
@@ -27,6 +28,7 @@
 }
 
 .nav-item {
+    transition: all 0.3s ease;
     position: relative;
     font-weight: 600;
     font-size: 1rem;

@@ -1,0 +1,60 @@
+﻿@using GenshinBuilds.Application.Common.Interfaces;
+@using GenshinBuilds.Domain;
+@typeparam TEntity
+
+<div class="filter-bar">
+    <div class="filter-bar-types">
+        <button class="filter-bar-button @GetButtonClass(1)" @onclick="(() => FiltredButtonClick(Element.Cryo, 1))">
+            <img class="filter-bar-icon" src="/images/cryo.webp" />
+        </button>
+        <button class="filter-bar-button @GetButtonClass(2)" @onclick="(() => FiltredButtonClick(Element.Pyro, 2))">
+            <img class="filter-bar-icon" src="/images/pyro.webp" />
+        </button>
+        <button class="filter-bar-button @GetButtonClass(3)" @onclick="(() => FiltredButtonClick(Element.Anemo, 3))">
+            <img class="filter-bar-icon" src="/images/anemo.webp" />
+        </button>
+        <button class="filter-bar-button @GetButtonClass(4)" @onclick="(() => FiltredButtonClick(Element.Geo, 4))">
+            <img class="filter-bar-icon" src="/images/geo.webp" />
+        </button>
+        <button class="filter-bar-button @GetButtonClass(5)" @onclick="(() => FiltredButtonClick(Element.Dendro, 5))">
+            <img class="filter-bar-icon" src="/images/dendro.webp" />
+        </button>
+        <button class="filter-bar-button @GetButtonClass(6)" @onclick="(() => FiltredButtonClick(Element.Electro, 6))">
+            <img class="filter-bar-icon" src="/images/electro.webp" />
+        </button>
+    </div>
+
+</div>
+
+
+@code {
+    [Parameter]
+    public List<TEntity> Source { get; set; }
+
+    [Parameter]
+    public List<TEntity> ListTypesOfElementItems { get; set; }
+
+    [Parameter]
+    public EventCallback<List<TEntity>> ListTypesOfElementItemsChanged { get; set; }
+
+    private Dictionary<int, Element> _selectedFiltredButton = new()
+    {
+        {1, Element.Cryo }, {2, Element.Pyro }, {3, Element.Anemo }, {4 ,Element.Geo }, {5, Element.Dendro }, { 6, Element.Electro}
+    };
+
+    private async Task FiltredButtonClick(Element type, int buttonId)
+    {
+        if (_selectedFiltredButton.ContainsKey(buttonId))
+            _selectedFiltredButton.Remove(buttonId);
+        else
+            _selectedFiltredButton.Add(buttonId, type);
+
+        ListTypesOfElementItems = Source.Where(e => _selectedFiltredButton.ContainsValue(((IHaveElement)e).Element)).ToList();
+        await ListTypesOfElementItemsChanged.InvokeAsync(ListTypesOfElementItems);
+    }
+
+    private string GetButtonClass(int buttonId)
+    {
+        return _selectedFiltredButton.ContainsKey(buttonId) ? "selected" : "";
+    }
+}
