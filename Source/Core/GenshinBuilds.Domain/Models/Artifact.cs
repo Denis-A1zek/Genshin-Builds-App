@@ -5,6 +5,10 @@ namespace GenshinBuilds.Domain.Models;
 
 public record Artifact : Identity
 {
-    public ArtifactType Type { get; set; }
-    public string ImageUrl { get; set; }
+    public string Name { get; set; }    
+    public string Description { get; set; }
+    public string Story { get; set; }
+    public RelicType Type { get; set; }
+    public string Image { get; set; }   
+
 }

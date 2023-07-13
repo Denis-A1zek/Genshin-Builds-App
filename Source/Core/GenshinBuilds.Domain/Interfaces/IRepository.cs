@@ -11,6 +11,8 @@ public interface IRepository<TEntity> where TEntity : Identity
 {
     Task<TEntity> GetByIdAsync(Identity id);
     Task<IEnumerable<TEntity>> GetAllAsync();
+    Task<List<TEntity>> Include(params Expression<Func<TEntity, object>>[] includes);
+    //IQueryable<TEntity> Includes(params Expression<Func<TEntity, object>>[] includes);
     Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate);
     Task<int> CountAsync();
     IQueryable<TEntity> GetQueryable();

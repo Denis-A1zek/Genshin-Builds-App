@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GenshinBuilds.Domain.Enum;
 
-public enum ArtifactType
+public enum RelicType
 {
     Flower,
     Plume,
