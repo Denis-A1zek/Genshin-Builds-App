@@ -81,7 +81,7 @@ public class ConverterTests
     [TestCase("electro", Element.Electro)]
     [TestCase("dendro", Element.Dendro)]
     [TestCase("Cryo", Element.Cryo)]
-    [TestCase("hydro element", Element.Hydro)]
+    [TestCase("hydro", Element.Hydro)]
     [TestCase("pyro", Element.Pyro)]
     [TestCase("....", Element.None)]
     [TestCase("", Element.None)]

@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Source\Core\GenshinBuilds.Domain\GenshinBuilds.Domain.csproj" />
+    <ProjectReference Include="..\..\Source\Infrastructure\GenshinBuilds.GenshinDbApi\GenshinBuilds.GenshinDbApi.csproj" />
     <ProjectReference Include="..\..\Source\Infrastructure\GenshinBuilds.Parser\GenshinBuilds.Parser.csproj" />
   </ItemGroup>
 
