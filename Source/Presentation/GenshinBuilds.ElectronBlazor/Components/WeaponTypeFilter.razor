@@ -1,4 +1,5 @@
-﻿@using GenshinBuilds.Domain.Interfaces;
+﻿@using GenshinBuilds.Application.Common.Interfaces;
+@using GenshinBuilds.Domain.Interfaces;
 @using GenshinBuilds.Domain.Models;
 @using GenshinBuilds.Domain;
 
@@ -7,19 +8,19 @@
 <div class="filter-bar">
     <div class="filter-bar-types">
         <button class="filter-bar-button @GetButtonClass(1)" @onclick="(() => FiltredButtonClick(WeaponType.Sword, 1))">
-            <img class="filter-bar-icon" src="/images/sword.png" />
+            <img class="filter-bar-icon" src="/images/Icon_Sword.png" />
         </button>
         <button class="filter-bar-button @GetButtonClass(2)" @onclick="(() => FiltredButtonClick(WeaponType.Claymore, 2))">
-            <img class="filter-bar-icon" src="/images/claymore.png" />
+            <img class="filter-bar-icon" src="/images/Icon_Claymore.png" />
         </button>
         <button class="filter-bar-button @GetButtonClass(3)" @onclick="(() => FiltredButtonClick(WeaponType.Polearm, 3))">
-            <img class="filter-bar-icon" src="/images/polearm.png" />
+            <img class="filter-bar-icon" src="/images/Icon_Polearm.png" />
         </button>
         <button class="filter-bar-button @GetButtonClass(4)" @onclick="(() => FiltredButtonClick(WeaponType.Catalyst, 4))">
-            <img class="filter-bar-icon" src="/images/catalyst.png" />
+            <img class="filter-bar-icon" src="/images/Icon_Catalyst.png" />
         </button>
         <button class="filter-bar-button @GetButtonClass(5)" @onclick="(() => FiltredButtonClick(WeaponType.Bow, 5))">
-            <img class="filter-bar-icon" src="/images/bow.png" />
+            <img class="filter-bar-icon" src="/images/Icon_Bow.png" />
         </button>
     </div>
 
@@ -35,7 +36,6 @@
     [Parameter]
     public EventCallback<List<TEntity>> ListTypesOfWeaponChanged { get; set; }
 
-
     private Dictionary<int, WeaponType> _selectedFiltredButton = new()
     {
         {1, WeaponType.Sword }, {2, WeaponType.Claymore }, {3, WeaponType.Polearm }, {4 ,WeaponType.Catalyst }, {5, WeaponType.Bow }
@@ -48,7 +48,7 @@
         else
             _selectedFiltredButton.Add(buttonId, type);
 
-        ListTypesOfWeapon = Source.Where(w => _selectedFiltredButton.ContainsValue(((IContainTypeOfWeapon)w).WeaponType)).ToList();
+        ListTypesOfWeapon = Source.Where(w => _selectedFiltredButton.ContainsValue(((IContainWeaponType)w).WeaponType)).ToList();
         await ListTypesOfWeaponChanged.InvokeAsync(ListTypesOfWeapon);
     }
 

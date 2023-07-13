@@ -6,6 +6,8 @@ using GenshinBuilds.RelationalDb;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.EntityFrameworkCore;
+using GenshinBuilds.GenshinDbApi;
+using GenshinBuilds.Updater;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +18,8 @@ builder.Services.AddServerSideBlazor();
 
 builder.Services.LoadApplicationDependency();
 builder.Services.AddRepository(builder.Configuration);
-builder.Services.AddParsers();
+builder.Services.AddApiCalls();
+builder.Services.AddUpdater();
 
 builder.Services.AddElectron();
 

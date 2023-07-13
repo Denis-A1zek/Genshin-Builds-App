@@ -19,6 +19,10 @@
     padding: 5px;
 }
 
+.filter-bar-icon:hover{
+    padding: 3px;
+}
+
 .filter-bar-button :hover {
     background-color: #1A1D27;
     border-radius: 10px;

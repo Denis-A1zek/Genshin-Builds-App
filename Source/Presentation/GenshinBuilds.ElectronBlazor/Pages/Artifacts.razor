@@ -1,0 +1,49 @@
+﻿@page "/artifacts"
+@using GenshinBuilds.Application.Common.Models;
+@using GenshinBuilds.Application.Services.Interfaces;
+@inject IArtifactSetInformationService _artifactSetService;
+
+<h3>Список артефактов</h3>
+
+<div class="flex-container">
+    @if (!_isBusy && FiltredArtifactSet.Count != 0)
+    {
+        <div class="flex-artifact-container">
+            @foreach (var artifactSet in FiltredArtifactSet)
+            {
+                <div class="flex-artifact">
+                    <ArtifactSetCard ArtifactSet="artifactSet"></ArtifactSetCard>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="flex-artifact-container-empty">
+            <EmptyList></EmptyList>
+        </div>
+    }
+</div>
+
+@code {
+
+    private bool _isBusy = true;
+    public List<MinimalArtifactSet> ArtifactSet { get; set; } = new();
+    public List<MinimalArtifactSet> FiltredArtifactSet { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _isBusy = true;
+        var artifacts = await _artifactSetService.GetAllMinimalArtifactSetInfo();
+
+        if (artifacts is null) return;
+
+        ArtifactSet = artifacts.ToList();
+
+        FiltredArtifactSet = ArtifactSet;
+
+        _isBusy = false;
+        await base.OnInitializedAsync();
+    }
+
+}
