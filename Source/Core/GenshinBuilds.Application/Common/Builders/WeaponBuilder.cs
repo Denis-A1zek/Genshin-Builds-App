@@ -81,4 +81,16 @@ public class WeaponBuilder : IWeaponBuilder
         _weapon.WeaponType = type;
         return this;
     }
+
+    public IWeaponBuilder SetWeaponCharacteristics(WeaponCharacteristics characteristics)
+    {
+        _weapon.Characteristics = characteristics;
+        return this;
+    }
+
+    public IWeaponBuilder SetStory(string story)
+    {
+        _weapon.Story = story;
+        return this;
+    }
 }

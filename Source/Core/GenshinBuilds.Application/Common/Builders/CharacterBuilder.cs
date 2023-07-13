@@ -49,15 +49,9 @@ public class CharacterBuilder : ICharacterBuilder
         return this;
     }
 
-    public ICharacterBuilder SetElementImage(string elementImage)
-    {
-        _character.ElementsImage = elementImage;
-        return this;
-    }
-
     public ICharacterBuilder SetFullImage(string fullImageUrl)
     {
-        _character.FullImage = fullImageUrl;
+        _character.Image = fullImageUrl;
         return this;
     }
 
@@ -91,4 +85,27 @@ public class CharacterBuilder : ICharacterBuilder
         return this;
     }
 
+    public ICharacterBuilder SetTitle(string title)
+    {
+        _character.Title = title;
+        return this;
+    }
+
+    public ICharacterBuilder SetFullName(string fullName)
+    {
+        _character.FullName = fullName;
+        return this;
+    }
+
+    public ICharacterBuilder SetGender(string gender)
+    {
+        _character.Gender = gender;
+        return this;
+    }
+
+    public ICharacterBuilder SetRegion(string region)
+    {
+        _character.Region = region;
+        return this;
+    }
 }
