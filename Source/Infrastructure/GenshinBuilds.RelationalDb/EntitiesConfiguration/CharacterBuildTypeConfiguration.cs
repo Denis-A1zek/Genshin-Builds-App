@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace GenshinBuilds.RelationalDb.EntitiesConfiguration;
 
-internal class CharacterBuildTypeConfiguration : IdentityTypeConfiguration<CharacterBuild>
+internal class CharacterBuildTypeConfiguration : IdentityTypeConfiguration<AssemblyItem>
 {
     protected override string TableName => "CharacterBuilds";
 
-    protected override void AddConfigure(EntityTypeBuilder<CharacterBuild> builder)
+    protected override void AddConfigure(EntityTypeBuilder<AssemblyItem> builder)
     {
         
     }

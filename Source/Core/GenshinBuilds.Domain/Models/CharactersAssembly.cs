@@ -8,7 +8,8 @@ namespace GenshinBuilds.Domain.Models;
 
 public record Build : Identity
 {
-    public string Title { get; set; }
+    public string Name { get; set; }
+    public int Priority { get; set; }
     public DateTime Created { get; set; }
     public List<CharacterBuild> Character { get; set; } = new(4);
 }
