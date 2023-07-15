@@ -8,7 +8,7 @@ namespace GenshinBuilds.Domain.Models;
 
 public record CharacterBuild : Identity
 {
-    public Character Character { get; set; }
-    public Weapon Weapon { get; set; }
-    public List<Artifact> Artifacts { get; set; } = new(5);
+    public string Title { get; set; }
+    public uint Priority { get; set; }
+    public List<BuildItem> Characters { get; set; }
 }
