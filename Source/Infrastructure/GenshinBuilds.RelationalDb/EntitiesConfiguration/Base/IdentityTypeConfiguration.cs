@@ -6,7 +6,7 @@ namespace GenshinBuilds.RelationalDb.EntitiesConfiguration;
 
 internal abstract class IdentityTypeConfiguration<T> : IEntityTypeConfiguration<T> where T : Identity
 {
-    protected abstract string TableName { get; }
+    protected virtual string TableName => typeof(T).Name;
     protected abstract void AddConfigure(EntityTypeBuilder<T> builder);
 
     public void Configure(EntityTypeBuilder<T> builder)

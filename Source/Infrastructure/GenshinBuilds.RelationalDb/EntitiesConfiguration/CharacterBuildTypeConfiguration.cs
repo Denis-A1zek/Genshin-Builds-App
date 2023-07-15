@@ -10,8 +10,6 @@ namespace GenshinBuilds.RelationalDb.EntitiesConfiguration;
 
 internal class CharacterBuildTypeConfiguration : IdentityTypeConfiguration<CharacterBuild>
 {
-    protected override string TableName => "CharacterBuilds";
-
     protected override void AddConfigure(EntityTypeBuilder<CharacterBuild> builder)
     {
         
